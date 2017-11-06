@@ -1,0 +1,34 @@
+﻿@model RecruitmentPortal.Models.CommissionType
+@{
+    ViewBag.Title = "Create a Commission Type";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "CommissionType", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.Name)
+            @f.FormGroup().TextBoxFor(model => model.Value)            
+            <div class=" form-group">
+                @Html.LabelFor(model => model.IsPercentage)
+                <br />
+                @Html.CheckBoxFor(model => model.IsPercentage)
+                @Html.ValidationMessageFor(model => model.IsPercentage)
+            </div>
+        </div>        
+    </div>    
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit").Class("btn btn-sm btn-default")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

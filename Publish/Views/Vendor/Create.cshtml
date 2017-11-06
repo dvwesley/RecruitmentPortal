@@ -1,0 +1,91 @@
+﻿@model RecruitmentPortal.Models.Vendor
+@{
+    ViewBag.Title = "Create a Vendor";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "Vendor", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.Name)
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.BillingContact)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.Address1)
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.Address2)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.City)
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DropDownListFor(model => model.State, (IEnumerable<SelectListItem>) ViewBag.States).OptionLabel("-- Select --")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.ZipCode)                        
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.PhoneNo)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-sm-12 col-xs-12">
+            @f.FormGroup().TextAreaFor(model => model.Terms)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @Html.LabelFor(model => model.W9)
+            <br />
+            @Html.CheckBoxFor(model => model.W9)
+            @Html.ValidationMessageFor(model => model.W9)
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class=" form-group">
+                @Html.LabelFor(model => model.InsuranceCertificates)
+                <br />
+                @Html.CheckBoxFor(model => model.InsuranceCertificates)
+                @Html.ValidationMessageFor(model => model.InsuranceCertificates)
+            </div>
+        </div>
+    </div>    
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @Html.LabelFor(model => model.Contracts)
+            <br />
+            @Html.CheckBoxFor(model => model.Contracts)
+            @Html.ValidationMessageFor(model => model.Contracts)
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class=" form-group">
+                @Html.LabelFor(model => model.BlackListed)
+                <br />
+                @Html.CheckBoxFor(model => model.BlackListed)
+                @Html.ValidationMessageFor(model => model.BlackListed)
+            </div>
+        </div>
+    </div>    
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit").Class("btn btn-sm btn-default")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

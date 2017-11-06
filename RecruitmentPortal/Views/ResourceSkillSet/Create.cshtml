@@ -1,0 +1,33 @@
+﻿@model RecruitmentPortal.Models.ResourceSkillSet
+@{
+    ViewBag.Title = "Add new Skill";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "ResourceSkillSet", new { resourceId = Model.ResourceId }, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @Html.HiddenFor(model => model.ResourceId)
+            @f.FormGroup().DropDownListFor(model => model.SkillSetId, (IEnumerable<SelectListItem>)ViewBag.SkillSets).OptionLabel("-- Select --")
+            @f.FormGroup().DropDownListFor(model => model.SelfRating, (IEnumerable<SelectListItem>)ViewBag.Ratings).OptionLabel("-- Select --")
+            @f.FormGroup().TextBoxFor(model => model.SelfComments)
+            @f.FormGroup().DropDownListFor(model => model.RecruiterRating, (IEnumerable<SelectListItem>)ViewBag.Ratings).OptionLabel("-- Select --")
+            @f.FormGroup().TextBoxFor(model => model.RecruiterComments)
+            @Html.Bootstrap().SubmitButton().Id("btnSubmit").Class("btn btn-sm btn-default")
+        </div>
+    </div>        
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

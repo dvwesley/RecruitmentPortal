@@ -1,0 +1,16 @@
+﻿@model RecruitmentPortal.Models.Referrer
+@{
+    Layout = null;
+}
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    <div class="row"> 
+        <div class="col-md-8 col-xs-12 col-sm-10">
+            @f.FormGroup().TextBoxFor(model => model.FirstName)
+            @f.FormGroup().TextBoxFor(model => model.LastName)
+            @f.FormGroup().TextBoxFor(model => model.Email)
+            @f.FormGroup().TextBoxFor(model => model.PhoneNo)
+        </div>
+    </div>
+}

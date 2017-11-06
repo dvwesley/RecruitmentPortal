@@ -1,0 +1,29 @@
+﻿@model RecruitmentPortal.Models.ResourceSkillSet
+@{
+    ViewBag.Title = "Delete Skill Set";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>Delete this Skill Set?</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "ResourceSkillSet", new { resourceId = Model.ResourceId }, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DisplayFor(model => model.SkillSet.Name).Label().LabelText("Skill Set")
+            @f.FormGroup().DisplayFor(model => model.SelfRating)
+            @f.FormGroup().DisplayFor(model => model.SelfComments)
+            @f.FormGroup().DisplayFor(model => model.RecruiterRating)
+            @f.FormGroup().DisplayFor(model => model.RecruiterComments)
+            @Html.Bootstrap().SubmitButton().Text("Delete").Class("btn btn-sm btn-default")
+        </div>
+    </div>
+}
+

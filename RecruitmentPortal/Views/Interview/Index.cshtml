@@ -1,0 +1,48 @@
+﻿@model IEnumerable<RecruitmentPortal.Models.Interview>
+@{
+    ViewBag.Title = "Interview List";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title</h4>        
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Create New", "Create", "Interview", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<div class="table-responsive">
+    @using (Html.Bootstrap().Begin(new Table().Id("BigListTable").Bordered().Condensed().Hover()))
+    {
+           <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ClientId)</th>
+                <th>@Html.DisplayNameFor(model => model.RequirementId)</th>
+                <th>@Html.DisplayNameFor(model => model.ResourceId)</th>
+                <th>@Html.DisplayNameFor(model => model.StartTime)</th>
+                <th>@Html.DisplayNameFor(model => model.EndTime)</th>
+                <th>@Html.DisplayNameFor(model => model.InterviewType)</th>
+                <th>@Html.DisplayNameFor(model => model.InterviewerId)</th>                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Client.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Requirement.JobNumber) <text> - </text>  @Html.DisplayFor(modelItem => item.Requirement.JobTitle)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Resource.ResourceName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+                    <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
+                    <td>@Html.DisplayFor(modelItem => item.InterviewTypeDisplay)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Interviewer.AspNetUser.FirstName)  @Html.DisplayFor(modelItem => item.Interviewer.AspNetUser.LastName)</td>                    
+                    <td>@Html.ActionLink("Edit", "Edit/" + @item.InterviewId, "Interview") | @Html.ActionLink("Delete", "Delete/" + @item.InterviewId, "Interview") | @Html.ActionLink("Documents", "Index", "InterviewDocument", new { interviewId = item.InterviewId }, null) | @Html.ActionLink("Ratings", "Index", "InterviewDetail", new { interviewId = item.InterviewId }, null)</td>
+                </tr>
+            }
+        </tbody>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/list/js")
+}

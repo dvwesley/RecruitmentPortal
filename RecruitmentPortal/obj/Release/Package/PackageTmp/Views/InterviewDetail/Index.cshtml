@@ -1,0 +1,43 @@
+﻿@model IEnumerable<RecruitmentPortal.Models.InterviewDetail>
+@{
+    ViewBag.Title = "Interview Ratings";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-6">
+        <h4>@ViewBag.Title</h4>
+    </div>
+    <div class="col-md-2 col-xs-6 text-right">
+        @Html.ActionLink("Interview List", "Index", "Interview", null, new { @class = "btn btn-sm btn-default" })
+        @Html.ActionLink("Create", "Create", "InterviewDetail", new { interviewId = ViewBag.InterviewId }, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()    
+    <div class="table-responsive">
+        @using (Html.Bootstrap().Begin(new Table().Bordered().Condensed().Hover()))
+        {
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.SkillSetId)</th>
+                    <th>@Html.DisplayNameFor(model => model.Rating)</th>
+                    <th>@Html.DisplayNameFor(model => model.Comments)</th>       
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.SkillSet.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Rating)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Comments)</td>                                    
+                        <td>@Html.ActionLink("Edit", "Edit/" + item.InterviewDetailId, "InterviewDetail")</td>
+                    </tr>
+                }
+            </tbody>
+        }
+    </div>        
+}
+

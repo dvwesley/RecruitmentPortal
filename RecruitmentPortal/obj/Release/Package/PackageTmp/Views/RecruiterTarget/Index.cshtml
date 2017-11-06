@@ -1,0 +1,42 @@
+﻿@model IEnumerable<RecruitmentPortal.Models.RecruiterTarget>
+@{
+    ViewBag.Title = "Recruiter Target List";
+}
+<br />
+<div class="row">
+    <div class="col-md-7 col-xs-6">
+        <h4>@ViewBag.DocumentTitle</h4>
+    </div>
+    <div class="col-md-5 col-xs-6 text-right">
+        @Html.ActionLink("Create New", "Create", "RecruiterTarget", new { recruiterId = ViewBag.RecruiterId }, new { @class = "btn btn-sm btn-default" })
+        @Html.ActionLink("Back to List", "Index", "Recruiter", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<div class="table-responsive">
+    @using (Html.Bootstrap().Begin(new Table().Bordered().Condensed().Hover()))
+    {
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Year)</th>
+                <th>@Html.DisplayNameFor(model => model.TargetType)</th>
+                <th>@Html.DisplayNameFor(model => model.TargetDate)</th>
+                <th>@Html.DisplayNameFor(model => model.TargetCount)</th>
+                <th>@Html.DisplayNameFor(model => model.CommissionType)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Year)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TargetTypeDisplay)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TargetDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TargetCount)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CommissionType.Name)</td>
+                    <td>@Html.ActionLink("Edit", "Edit/" + item.RecruiterTargetId, "RecruiterTarget") | @Html.ActionLink("Delete", "Delete/" + item.RecruiterTargetId, "RecruiterTarget")</td>
+                </tr>
+            }
+        </tbody>
+    }
+</div>

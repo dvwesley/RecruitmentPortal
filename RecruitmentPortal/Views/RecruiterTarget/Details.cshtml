@@ -1,0 +1,194 @@
+﻿@model RecruitmentPortal.Models.RecruiterTarget
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RecruiterTarget</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TargetDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TargetDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TargetType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TargetType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TargetCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TargetCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TargetReached)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TargetReached)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoofResumesContributed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoofResumesContributed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommissionAccrued)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommissionAccrued)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommissionPaid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommissionPaid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.H1BContributed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.H1BContributed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.W2Placement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.W2Placement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CTCPlacement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CTCPlacement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.C1099Placement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.C1099Placement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CitizenPlacement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CitizenPlacement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CTHPlacement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CTHPlacement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProActiveHiring)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProActiveHiring)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Profitability)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profitability)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedTimestamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedTimestamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedTimestamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedTimestamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommissionType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommissionType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Recruiter.Specialty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Recruiter.Specialty)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RecruiterTargetId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

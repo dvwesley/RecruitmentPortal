@@ -1,0 +1,17 @@
+﻿@model RecruitmentPortal.Models.Vendor
+@{
+    Layout = null;
+}
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-8 col-xs-12 col-sm-10">
+            @f.FormGroup().TextBoxFor(model => model.Name)
+            @f.FormGroup().TextBoxFor(model => model.City)
+            @f.FormGroup().DropDownListFor(model => model.State, (IEnumerable<SelectListItem>)ViewBag.States).OptionLabel("-- Select --")
+            @f.FormGroup().TextBoxFor(model => model.PhoneNo)
+        </div>
+    </div>
+}
+

@@ -1,0 +1,82 @@
+﻿@model RecruitmentPortal.Models.InterviewDocument
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>InterviewDocument</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FilePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FilePath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FileName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContentType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContentType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UploadedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UploadedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UploadedTimeStamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UploadedTimeStamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interview.PhoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interview.PhoneNo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InterviewDocumentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

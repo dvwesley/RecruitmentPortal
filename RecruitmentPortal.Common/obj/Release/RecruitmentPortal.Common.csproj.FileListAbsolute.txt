@@ -1,0 +1,4 @@
+E:\Switchlane\RecruitmentPortal\RecruitmentPortal.Common\bin\Release\RecruitmentPortal.Common.dll
+E:\Switchlane\RecruitmentPortal\RecruitmentPortal.Common\bin\Release\RecruitmentPortal.Common.pdb
+E:\Switchlane\RecruitmentPortal\RecruitmentPortal.Common\obj\Release\RecruitmentPortal.Common.dll
+E:\Switchlane\RecruitmentPortal\RecruitmentPortal.Common\obj\Release\RecruitmentPortal.Common.pdb

@@ -1,0 +1,66 @@
+﻿@model RecruitmentPortal.Models.ResourceOnBoardModel
+@{
+    ViewBag.Title = "On Board";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "RequirementDetail", new { requirementId = Model.RequirementId }, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()        
+    @Html.HiddenFor(model => model.RequirementDetailId)
+    @Html.HiddenFor(model => model.ResourceId)
+    @Html.HiddenFor(model => model.RequirementId)
+    @Html.HiddenFor(model => model.RecruiterId)
+    
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DisplayFor(model => model.BuyRate)            
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DisplayFor(model => model.BillingRate)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">                        
+            <div class=" form-group">
+                <label for="ProjectStartDate">Project Start Date<span style="color: red;">*</span></label>                
+                <div class="input-group date">
+                    @Html.TextBoxFor(model => model.ProjectStartDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+                @Html.ValidationMessageFor(model => model.ProjectStartDate)
+            </div>
+            <div class=" form-group">
+                <label for="ProjectEndDate">Project End Date<span style="color: red;">*</span></label>                
+                <div class="input-group date">
+                    @Html.TextBoxFor(model => model.ProjectEndDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+                @Html.ValidationMessageFor(model => model.ProjectEndDate)
+            </div>
+            <div class=" form-group">
+                @Html.LabelFor(model => model.PlacementDate)
+                <div class="input-group date">
+                    @Html.TextBoxFor(model => model.PlacementDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+                @Html.ValidationMessageFor(model => model.PlacementDate)
+            </div>                  
+            @f.FormGroup().TextBoxFor(model => model.FinalRate).Prepend("$").Format("{0:0.00}")            
+        </div>        
+    </div>
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit").Class("btn btn-sm btn-default")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

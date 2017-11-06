@@ -1,0 +1,27 @@
+﻿@model RecruitmentPortal.Models.SkillSet
+@{
+    ViewBag.Title = "Create a Skill Set";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "SkillSet", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-4">
+            @f.FormGroup().TextBoxFor(model => model.Name)
+        </div>
+    </div>
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit").Class("btn btn-sm btn-default")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

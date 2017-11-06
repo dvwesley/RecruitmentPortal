@@ -1,0 +1,38 @@
+﻿@model IEnumerable<RecruitmentPortal.Models.VendorDocument>
+@{
+    ViewBag.Title = "Document list";
+}
+<br />
+<div class="row">
+    <div class="col-md-7 col-xs-7">
+        <h4>@ViewBag.DocumentTitle</h4>
+    </div>
+    <div class="col-md-5 col-xs-5 text-right">
+        @Html.ActionLink("Vendor List", "Index", "Vendor", null, new { @class = "btn btn-sm btn-default" })
+        @Html.ActionLink("Upload Document", "Upload", "VendorDocument", new { vendorId = ViewBag.VendorId }, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<div class="table-responsive">
+    @using (Html.Bootstrap().Begin(new Table().Id("interviewListTable").Bordered().Condensed().Hover()))
+    {
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.DocumentTypeId)</th>
+                <th>@Html.DisplayNameFor(model => model.Description)</th>
+                <th>@Html.DisplayNameFor(model => model.FileName)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.DocumentType.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FileName)</td>
+                    <td><a href="@item.FilePath" target="_blank">View</a> | @Html.ActionLink("Delete", "Delete/" + item.VendorDocumentId, "VendorDocument")</td>
+                </tr>
+            }
+        </tbody>
+    }
+</div>

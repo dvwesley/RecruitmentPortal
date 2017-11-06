@@ -1,0 +1,106 @@
+﻿@model RecruitmentPortal.Models.Recruiter
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Recruiter</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Specialty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Specialty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AreasOfImprovment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AreasOfImprovment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CareerPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CareerPath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Communities)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Communities)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManagerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManagerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedTimestamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedTimestamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedTimestamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedTimestamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.UserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RecruiterId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

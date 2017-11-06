@@ -1,0 +1,578 @@
+﻿@model RecruitmentPortal.Models.ResourceViewModel
+@{
+    ViewBag.Title = "Edit Consultant";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "Resource", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form().Id("ResourceForm")))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ResourceId)
+    using (var tabs = Html.Bootstrap().Begin(new Tabs("Resource")))
+    {        
+        @tabs.Tab("Personal Info")
+        @tabs.Tab("Contact Info")
+        @tabs.Tab("Experience Summary")        
+        @tabs.Tab("Financial Info")
+        @tabs.Tab("Referrer Info")        
+        @tabs.Tab("Recruiter Info")
+        @tabs.Tab("References")
+        @tabs.Tab("Checklist")        
+         
+        using (tabs.BeginPanel())
+        {
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.FirstName)
+                </div>            
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.MiddleInitial)
+                </div>            
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.LastName)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    <div class=" form-group">
+                        <label for="DOB">DOB<span style="color:red">*</span></label>
+                        <div class="input-group date">
+                            @Html.TextBoxFor(model => model.DOB, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.DOB)
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Address1)
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Address2)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.City)
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().DropDownListFor(model => model.State, (IEnumerable<SelectListItem>) ViewBag.States).OptionLabel("-- Select --")
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Zipcode)
+                </div>
+            </div>        
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">                    
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.MaritalStatus)
+                        <div class="input-list-container">
+                            <div class='radio checkbox-inline' style="vertical-align:bottom;"><label for="MaritalStatus_0">@Html.RadioButtonFor(model => model.MaritalStatus, "S")Single<span class="required" style="visibility:hidden;">*</span> </label></div>
+                            <div class='radio checkbox-inline' style="vertical-align:bottom;"><label for="MaritalStatus_1">@Html.RadioButtonFor(model => model.MaritalStatus, "M")Married<span class="required" style="visibility:hidden;">*</span> </label></div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.MaritalStatus)
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.Anniversary)
+                        <div class="input-group date">
+                            @Html.TextBoxFor(model => model.Anniversary, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Anniversary)
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">                    
+                    @f.FormGroup().TextBoxFor(model => model.NoofKids)
+                </div>
+            </div>        
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.SpouseDOB)
+                        <div class="input-group date">
+                            @Html.TextBoxFor(model => model.SpouseDOB, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.SpouseDOB)
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    <div class=" form-group">
+                        <label for="Kid1DOB">Kid1 DOB<span style="color: red; visibility: hidden">*</span></label>
+                        <div class="input-group date">
+                            @Html.TextBoxFor(model => model.Kid1DOB, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Kid1DOB)
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">                    
+                    <div class=" form-group">
+                        <label for="Kid2DOB">Kid2 DOB<span style="color: red; visibility: hidden">*</span></label>
+                        <div class="input-group date">
+                            @Html.TextBoxFor(model => model.Kid2DOB, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Kid2DOB)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class=" form-group">
+                        <label for="Sex">Sex<span style="color:red">*</span></label>
+                        <div class="input-list-container">
+                            <div class='radio checkbox-inline' style="vertical-align:bottom;"><label for="Sex_0">@Html.RadioButtonFor(model => model.Sex, "M")Male</label></div>
+                            <div class='radio checkbox-inline' style="vertical-align:bottom;"><label for="Sex_1">@Html.RadioButtonFor(model => model.Sex, "F")Female</label></div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Sex)
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().DropDownListFor(model => model.ResourceTypeId, (SelectList)ViewBag.ResourceTypes)
+                </div>        
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class=" form-group">
+                        <label for="Sex">Residential Status<span style="color:red; visibility:hidden">*</span></label>
+                        <div class="input-list-container">
+                            <div class='radio checkbox-inline' style="vertical-align:bottom;"><label for="ResidentialStatus_0">@Html.RadioButtonFor(model => model.ResidentialStatus, "V")Visa</label></div>
+                            <div class='radio checkbox-inline' style="vertical-align:bottom;"><label for="ResidentialStatus_1">@Html.RadioButtonFor(model => model.ResidentialStatus, "G")Green Card</label></div>
+                            <div class='radio checkbox-inline' style="vertical-align:bottom;"><label for="ResidentialStatus_2">@Html.RadioButtonFor(model => model.ResidentialStatus, "C")Citizen</label></div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ResidentialStatus)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().DropDownListFor(model => model.VisaType, (IEnumerable<SelectListItem>) ViewBag.VisaTypes).OptionLabel("--Select--")
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                </div>
+            </div>
+        }
+        using (tabs.BeginPanel())
+        {
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.PhoneNo)
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.PhoneNo2)
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.SkypeId)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Email).Disabled(true)
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Email2)
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.LinkedInProfile)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().DropDownListFor(model => model.Availability, (IEnumerable<SelectListItem>)ViewBag.Availabilities).OptionLabel("--Select--")
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                </div>
+            </div>
+        }
+        using (tabs.BeginPanel())
+        {
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Qualification)
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.YearsOfExperience).Append("Yrs").Format("{0:0.00}")
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.USExperience).Append("Yrs").Format("{0:0.00}")
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.LocationPreference)
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">                
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                </div>
+            </div>            
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    @f.FormGroup().TextAreaFor(model => model.DomainExpertise)
+                </div>
+            </div>
+        }
+        using (tabs.BeginPanel())
+        {
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.HourlyRate).Prepend("$").Format("{0:0.00}")
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Salary).Prepend("$").Format("{0:0.00}")
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.CTC).Prepend("$").Format("{0:0.00}").Disabled(true)
+                </div>
+            </div>
+            using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Warning)))
+            {
+                @p.Heading("Benefits")
+                using (p.BeginBody())
+                {
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.Medical)
+                                <br />
+                                @Html.CheckBoxFor(model => model.Medical)
+                                @Html.ValidationMessageFor(model => model.Medical)
+                            </div>
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.Relocation)
+                                <br />
+                                @Html.CheckBoxFor(model => model.Relocation)
+                                @Html.ValidationMessageFor(model => model.Relocation)
+                            </div>
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.LTD)
+                                <br />
+                                @Html.CheckBoxFor(model => model.LTD)
+                                @Html.ValidationMessageFor(model => model.LTD)
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.Vision)
+                                <br />
+                                @Html.CheckBoxFor(model => model.Vision)
+                                @Html.ValidationMessageFor(model => model.Vision)
+                            </div>
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.FourZeroOneK)
+                                <br />
+                                @Html.CheckBoxFor(model => model.FourZeroOneK)
+                                @Html.ValidationMessageFor(model => model.FourZeroOneK)
+                            </div>
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.LifeInsurance)
+                                <br />
+                                @Html.CheckBoxFor(model => model.LifeInsurance)
+                                @Html.ValidationMessageFor(model => model.LifeInsurance)
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.Dental)
+                                <br />
+                                @Html.CheckBoxFor(model => model.Dental)
+                                @Html.ValidationMessageFor(model => model.Dental)
+                            </div>
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.STD)
+                                <br />
+                                @Html.CheckBoxFor(model => model.STD)
+                                @Html.ValidationMessageFor(model => model.STD)
+                            </div>
+                        </div>
+                    </div>
+                }
+            }               
+        } 
+        using (tabs.BeginPanel())
+        {
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">                    
+                    @f.FormGroup().DropDownListFor(model => model.ReferrerId, (SelectList)ViewBag.Referrers).OptionLabel("--Select--").Append(Html.Bootstrap().Button().Text("Add").Id("btnAddReferrer").Class("btn btn-default"))
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">                    
+                    @f.FormGroup().DropDownListFor(model => model.ReferredConsultantId, (SelectList)ViewBag.Resources).OptionLabel("--Select--")
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.ReferralAmountDue).Prepend("$").Format("{0:0.00}")
+                </div>
+            </div>
+        }
+        using (tabs.BeginPanel())
+        {
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Source)
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.VisaExpirationDate)
+                        <div class="input-group date">
+                            @Html.TextBoxFor(model => model.VisaExpirationDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.VisaExpirationDate)
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">       
+                    @f.FormGroup().TextBoxFor(model => model.NoofClientInterviews)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">                    
+                    @f.FormGroup().DropDownListFor(model => model.Tier1VendorId, (SelectList)ViewBag.Tier1Vendors).OptionLabel("--Select--").Append(Html.Bootstrap().Button().Text("Add").Id("btnAddVendor").Class("btn btn-default"))
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().DropDownListFor(model => model.Tier2VendorId, (SelectList)ViewBag.Tier2Vendors).OptionLabel("--Select--").Append(Html.Bootstrap().Button().Text("Add").Id("btnAddVendor1").Class("btn btn-default"))
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.TrainingAreas)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">                    
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.LastMeetingDate)
+                        <div class="input-group date">
+                            @Html.TextBoxFor(model => model.LastMeetingDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.LastMeetingDate)
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">                    
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.NextMeetingDate)
+                        <div class="input-group date">
+                            @Html.TextBoxFor(model => model.NextMeetingDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.NextMeetingDate)
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">                    
+                </div>
+            </div>            
+            <div class="row">         
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    @f.FormGroup().TextAreaFor(model => model.Notes)
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Warning)))
+                    {
+                        @p.Heading("Notes History")
+                        using (p.BeginBody())
+                        {
+                            @Html.Raw(Model.PreviousNotes)
+                        }
+                    }
+                </div>
+            </div>
+        }
+        using (tabs.BeginPanel())
+        {
+            <br />            
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Warning)))
+                    {
+                        @p.Heading("Reference 1")
+                        using (p.BeginBody())
+                        {                            
+                            @f.FormGroup().TextBoxFor(model => model.Ref1Name)                            
+                            @f.FormGroup().TextBoxFor(model => model.Ref1CompanyName)                            
+                            @f.FormGroup().TextBoxFor(model => model.Ref1Designation)                            
+                            @f.FormGroup().TextBoxFor(model => model.Ref1Email)                            
+                            @f.FormGroup().TextBoxFor(model => model.Ref1Phone)                            
+                        }
+                    }
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Warning)))
+                    {
+                        @p.Heading("Reference 2")
+                        using (p.BeginBody())
+                        {
+                            @f.FormGroup().TextBoxFor(model => model.Ref2Name)
+                            @f.FormGroup().TextBoxFor(model => model.Ref2CompanyName)
+                            @f.FormGroup().TextBoxFor(model => model.Ref2Designation)
+                            @f.FormGroup().TextBoxFor(model => model.Ref2Email)
+                            @f.FormGroup().TextBoxFor(model => model.Ref2Phone)
+                        }
+                    }
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Warning)))
+                    {
+                        @p.Heading("Reference 3")
+                        using (p.BeginBody())
+                        {
+                            @f.FormGroup().TextBoxFor(model => model.Ref3Name)
+                            @f.FormGroup().TextBoxFor(model => model.Ref3CompanyName)
+                            @f.FormGroup().TextBoxFor(model => model.Ref3Designation)
+                            @f.FormGroup().TextBoxFor(model => model.Ref3Email)
+                            @f.FormGroup().TextBoxFor(model => model.Ref3Phone)
+                        }
+                    }
+                </div>
+            </div>            
+        }
+        using (tabs.BeginPanel())
+        {
+            <br />            
+               <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">                    
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.BackgroundCheck)
+                        <br />
+                        @Html.CheckBoxFor(model => model.BackgroundCheck)
+                        @Html.ValidationMessageFor(model => model.BackgroundCheck)
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.BlackListed)
+                        <br />
+                        @Html.CheckBoxFor(model => model.BlackListed)
+                        @Html.ValidationMessageFor(model => model.BlackListed)
+                    </div>
+                </div>                
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.PersonalInterview)
+                        <br />
+                        @Html.CheckBoxFor(model => model.PersonalInterview)
+                        @Html.ValidationMessageFor(model => model.PersonalInterview)
+                    </div>
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.SwitchLaneInterviewed)
+                        <br />
+                        @Html.CheckBoxFor(model => model.SwitchLaneInterviewed)
+                        @Html.ValidationMessageFor(model => model.SwitchLaneInterviewed)
+                    </div>
+                </div>                                
+            </div>                        
+            using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Warning)))
+            {
+                @p.Heading("Documents")
+                using (p.BeginBody())
+                {
+                    <div class="row">
+                        <div class="col-md-4 col-sm-7 col-xs-12">
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.PhotoId)
+                                <br />
+                                @Html.CheckBoxFor(model => model.PhotoId, new { @disabled = "true"})
+                                @Html.ValidationMessageFor(model => model.PhotoId)
+                            </div>
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.EducationCertificates)
+                                <br />
+                                @Html.CheckBoxFor(model => model.EducationCertificates, new { @disabled = "true" })
+                                @Html.ValidationMessageFor(model => model.EducationCertificates)
+                            </div>
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.OPT)
+                                <br />
+                                @Html.CheckBoxFor(model => model.OPT, new { @disabled = "true"})
+                                @Html.ValidationMessageFor(model => model.OPT)
+                            </div>
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.PassPortCopy)
+                                <br />
+                                @Html.CheckBoxFor(model => model.PassPortCopy, new { @disabled = "true"})
+                                @Html.ValidationMessageFor(model => model.PassPortCopy)
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-7 col-xs-12">
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.I9Form)
+                                <br />
+                                @Html.CheckBoxFor(model => model.I9Form, new { @disabled = "true"})
+                                @Html.ValidationMessageFor(model => model.I9Form)
+                            </div>
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.PayStubs)
+                                <br />
+                                @Html.CheckBoxFor(model => model.PayStubs, new { @disabled = "true"})
+                                @Html.ValidationMessageFor(model => model.PayStubs)
+                            </div>
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.NDA)
+                                <br />
+                                @Html.CheckBoxFor(model => model.NDA, new { @disabled = "true"})
+                                @Html.ValidationMessageFor(model => model.NDA)
+                            </div>
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.LicenseCopy)
+                                <br />
+                                @Html.CheckBoxFor(model => model.LicenseCopy, new { @disabled = "true"})
+                                @Html.ValidationMessageFor(model => model.LicenseCopy)
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-7 col-xs-12">
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.GreenCardDocuments)
+                                <br />
+                                @Html.CheckBoxFor(model => model.GreenCardDocuments, new { @disabled = "true"})
+                                @Html.ValidationMessageFor(model => model.GreenCardDocuments)
+                            </div>
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.EAD)
+                                <br />
+                                @Html.CheckBoxFor(model => model.EAD, new { @disabled = "true"})
+                                @Html.ValidationMessageFor(model => model.EAD)
+                            </div>
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.VisaCopy)
+                                <br />
+                                @Html.CheckBoxFor(model => model.VisaCopy, new { @disabled = "true"})
+                                @Html.ValidationMessageFor(model => model.VisaCopy)
+                            </div>
+                            <div class=" form-group">
+                                @Html.LabelFor(model => model.W2Copy)
+                                <br />
+                                @Html.CheckBoxFor(model => model.W2Copy, new { @disabled = "true"})
+                                @Html.ValidationMessageFor(model => model.W2Copy)
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    }
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit").Class("btn btn-sm btn-default") 
+    <div id='ReferrerModal' class='modal fade' data-url='@Url.Action("../Referrer/New")'></div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/resourceedit/js")    
+}

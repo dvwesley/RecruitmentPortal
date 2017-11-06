@@ -1,0 +1,225 @@
+﻿@model RecruitmentPortal.Models.ResourceProfileViewModel
+@{
+    ViewBag.Title = "Profile Summary";
+}
+<br />
+<div class="row">
+    <div class="col-md-7 col-xs-6">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-5 col-xs-6 text-right">
+        @Html.ActionLink("Edit", "Edit/" + Model.Resource.ResourceId, "Resource", null, new { @class = "btn btn-sm btn-default" })
+        @Html.ActionLink("Back to List", "Index", "Resource", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-10 col-sm-8 col-xs-6">
+        <h4>@Html.DisplayFor(model => model.Resource.AspNetUser.FirstName) @Html.DisplayFor(model => model.Resource.AspNetUser.MiddleInitial) @Html.DisplayFor(model => model.Resource.AspNetUser.LastName)</h4>
+        <h6>@Html.DisplayFor(model => model.Resource.AspNetUser.Address1) @Html.DisplayFor(model => model.Resource.AspNetUser.Address2)</h6>
+        <h6>@Html.DisplayFor(model => model.Resource.CityStateZipDisplay)</h6>        
+        <h6><abbr title="Phone">P:</abbr> @Html.DisplayFor(model => model.Resource.PhoneDisplay)</h6>
+        <h6>@Html.DisplayFor(model => model.Resource.AspNetUser.UserName)</h6>
+        <h6>@Html.DisplayFor(model => model.Resource.Email2)</h6>
+        <h6><abbr title="Skype">Skype:</abbr> @Html.DisplayFor(model => model.Resource.SkypeId)</h6>        
+        <h6><abbr title="LinkedIn">LinkedIn:</abbr> @Html.DisplayFor(model => model.Resource.LinkedInProfile)</h6>
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6">
+        <div class="thumbnail">            
+            <img src="@Html.DisplayFor(model => model.ProfilePictureLink)" alt="Profile Picture" class="ProfilePicture" />            
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Warning)))
+        {
+            @p.Heading("Employment Info")
+            using (p.BeginBody())
+            {
+                <h6>@Html.DisplayNameFor(model => model.Resource.ResourceType) - @Html.DisplayFor(model => model.Resource.ResourceType.Name)</h6>
+                <h6>@Html.DisplayNameFor(model => model.Resource.Tier1VendorId) - @Html.DisplayFor(model => model.Resource.Vendor.Name)</h6>
+                <h6>@Html.DisplayNameFor(model => model.Resource.Tier2VendorId) - @Html.DisplayFor(model => model.Resource.Vendor1.Name)</h6>
+                <h6>@Html.DisplayNameFor(model => model.Resource.ClientId) - @Html.DisplayFor(model => model.Resource.Client.Name)</h6>
+                <h6>@Html.DisplayNameFor(model => model.Resource.ProjectEndDate) - @Html.DisplayFor(model => model.Resource.ProjectEndDate)</h6>
+                <h6>@Html.DisplayNameFor(model => model.Resource.Availability) - @Html.DisplayFor(model => model.Resource.Availability)</h6>
+                <h6>@Html.DisplayNameFor(model => model.Resource.NoofClientInterviews) - @Html.DisplayFor(model => model.Resource.NoofClientInterviews)</h6>                
+            }
+        }
+        <br />
+        @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Success)))
+        {
+            @p.Heading("Experience Summary")
+            using (p.BeginBody())
+            {
+                <h6>@Html.DisplayNameFor(model => model.Resource.Qualification) - @Html.DisplayFor(model => model.Resource.Qualification)</h6>
+                <h6>@Html.DisplayNameFor(model => model.Resource.YearsOfExperience) - @Html.DisplayFor(model => model.Resource.YearsOfExperience)</h6>
+                <h6>@Html.DisplayNameFor(model => model.Resource.USExperience) - @Html.DisplayFor(model => model.Resource.USExperience)</h6>
+                <h6>@Html.DisplayNameFor(model => model.Resource.LocationPreference) - @Html.DisplayFor(model => model.Resource.LocationPreference)</h6>
+                <h6>@Html.DisplayNameFor(model => model.Resource.DomainExpertise) - @Html.DisplayFor(model => model.Resource.DomainExpertise)</h6>
+            }
+        }
+        <br />
+        @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Danger)))
+        {
+            @p.Heading("Skill Set")
+            using (p.BeginBody())
+            {
+                if (Model.Resource.ResourceSkillSets != null)
+                {
+                    <h6>Skill Set  ->  Self Rating  ->  Recruiter Rating </h6>
+                    foreach (var item in Model.Resource.ResourceSkillSets.OrderBy(s => s.SkillSet.Name))
+                    {
+                        <h6>@item.SkillSet.Name   ->   @item.SelfRating   ->   @item.RecruiterRating</h6>
+                    }
+                }
+            }
+        }
+        <br />
+        @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Info)))
+        {
+            @p.Heading("Interview Details")
+            using (p.BeginBody())
+            {
+                if (Model.Interviews != null && Model.Interviews.Count() > 0)
+                {
+                    foreach (var item in Model.Interviews.OrderByDescending(i => i.InterviewDate))
+                    {
+                        <h6>@Html.ActionLink("Interview Date - " + item.InterviewDate.ToString("MM/dd/yyyy"), "Details/" + item.InterviewId, "Interview")</h6>
+                        <h6>Interview Type - @item.InterviewTypeDisplay</h6>
+                        <h6>Interview Status - @item.InterviewStatusDisplay</h6>
+                        <h6>Avg Rating - @Html.DisplayFor(modelItem => item.AverageRating)</h6>
+                        if(item.InterviewerId != null)
+                        { 
+                            <h6>Interviewer - @Html.ActionLink(item.InterviewerName, "Details/" + item.InterviewerId, "Interviewer")</h6>
+                        }
+                        else
+                        {
+                            <h6>Interviewer - </h6>
+                        }
+                        <br />
+                    }
+                }
+                <div class="col-md-12 col-xs-12 col-sm-12 text-right">
+                    <h6>@Html.ActionLink("Schedule an Interview", "Create", "Interview")</h6>
+                </div>
+            }
+        }
+    </div>
+    <div class="col-md-4">
+        @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Danger)))
+        {
+            @p.Heading("References")
+            using (p.BeginBody())
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6>@Html.DisplayFor(model => model.Resource.Ref1Name)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.Ref1Designation), @Html.DisplayFor(model => model.Resource.Ref1CompanyName)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.Ref1Email)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.Ref1Phone)</h6>         
+                        <h6>@Html.DisplayFor(model => model.Resource.Ref2Name)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.Ref2Designation), @Html.DisplayFor(model => model.Resource.Ref2CompanyName)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.Ref2Email)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.Ref2Phone)</h6>                        
+                        <h6>@Html.DisplayFor(model => model.Resource.Ref3Name)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.Ref3Designation), @Html.DisplayFor(model => model.Resource.Ref3CompanyName)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.Ref3Email)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.Ref3Phone)</h6>
+                    </div>
+                </div>
+            }
+        }
+        <br />
+        @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Warning)))
+        {
+            @p.Heading("Checklist")
+            using (p.BeginBody())
+            {
+                <div class="row">
+                    <div class="col-md-5">
+                        <h6>@Html.DisplayFor(model => model.Resource.PhotoId) - @Html.DisplayNameFor(model => model.Resource.PhotoId)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.I9Form) - @Html.DisplayNameFor(model => model.Resource.I9Form)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.PayStubs) - @Html.DisplayNameFor(model => model.Resource.PayStubs)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.EAD) - @Html.DisplayNameFor(model => model.Resource.EAD)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.OPT) - @Html.DisplayNameFor(model => model.Resource.OPT)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.NDA) - @Html.DisplayNameFor(model => model.Resource.NDA)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.W2Copy) - @Html.DisplayNameFor(model => model.Resource.W2Copy)</h6>                        
+                        <h6>@Html.DisplayFor(model => model.Resource.VisaCopy) - @Html.DisplayNameFor(model => model.Resource.VisaCopy)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.PassPortCopy) - @Html.DisplayNameFor(model => model.Resource.PassPortCopy)</h6>
+                    </div>
+                    <div class="col-md-7">
+                        
+                        <h6>@Html.DisplayFor(model => model.Resource.GreenCardDocuments) - @Html.DisplayNameFor(model => model.Resource.GreenCardDocuments)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.EducationCertificates) - @Html.DisplayNameFor(model => model.Resource.EducationCertificates)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.LicenseCopy) - @Html.DisplayNameFor(model => model.Resource.LicenseCopy)</h6>                        
+                        <h6>@Html.DisplayFor(model => model.Resource.PersonalInterview) - @Html.DisplayNameFor(model => model.Resource.PersonalInterview)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.SwitchLaneInterviewed) - @Html.DisplayNameFor(model => model.Resource.SwitchLaneInterviewed)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.BackgroundCheck) - @Html.DisplayNameFor(model => model.Resource.BackgroundCheck)</h6>
+                        <h6>@Html.DisplayFor(model => model.Resource.BlackListed) - @Html.DisplayNameFor(model => model.Resource.BlackListed)</h6>                        
+                        <h6>@Html.DisplayNameFor(model => model.Resource.VisaExpirationDate) - @Html.DisplayFor(model => model.Resource.VisaExpirationDate)</h6>
+                        <h6>@Html.DisplayNameFor(model => model.Resource.VisaType) - @Html.DisplayFor(model => model.Resource.VisaType)</h6>
+                        <h6>@Html.DisplayNameFor(model => model.Resource.ResidentialStatus) - @Html.DisplayFor(model => model.Resource.ResidentialStatusDisplay)</h6>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="col-md-4">
+        @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Success)))
+        {
+            @p.Heading("Financial Info")
+            using (p.BeginBody())
+            {
+                <h6>@Html.DisplayNameFor(model => model.Resource.HourlyRate) - @Html.DisplayFor(model => model.Resource.HourlyRate)</h6>
+                <h6>@Html.DisplayNameFor(model => model.Resource.Salary) - @Html.DisplayFor(model => model.Resource.Salary)</h6>
+                <h6>@Html.DisplayNameFor(model => model.Resource.CTC) - @Html.DisplayFor(model => model.Resource.CTC)</h6>
+                <h6>@Html.DisplayFor(model => model.Resource.Medical) - @Html.DisplayNameFor(model => model.Resource.Medical)</h6>
+                <h6>@Html.DisplayFor(model => model.Resource.Relocation) - @Html.DisplayNameFor(model => model.Resource.Relocation)</h6>
+                <h6>@Html.DisplayFor(model => model.Resource.LTD) - @Html.DisplayNameFor(model => model.Resource.LTD)</h6>
+                <h6>@Html.DisplayFor(model => model.Resource.Vision) - @Html.DisplayNameFor(model => model.Resource.Vision)</h6>
+                <h6>@Html.DisplayFor(model => model.Resource.FourZeroOneK) - @Html.DisplayNameFor(model => model.Resource.FourZeroOneK)</h6>
+                <h6>@Html.DisplayFor(model => model.Resource.LifeInsurance) - @Html.DisplayNameFor(model => model.Resource.LifeInsurance)</h6>
+            }
+        }
+        <br />
+        @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Info)))
+        {
+            @p.Heading("Documents")
+            using (p.BeginBody())
+            {
+                if (Model.Resource.ResourceDocuments != null)
+                {
+                    foreach (var item in Model.Resource.ResourceDocuments.OrderBy(d => d.DocumentType.Name).OrderByDescending(d => d.UploadedTimestamp))
+                    {
+                        <h6><a href="@item.FilePath" target="_blank">@item.DocumentType.Name - @item.Description</a></h6>
+                    }
+                }
+                
+                <div class="col-md-12 col-xs-12 col-sm-12 text-right">
+                    <h6>@Html.ActionLink("Upload Document", "Upload", "ResourceDocument", new { resourceId = Model.Resource.ResourceId }, null)</h6>
+                </div>
+            }
+        }        
+        <br />
+        @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Warning)))
+        {
+            @p.Heading("Suggested Requirements")
+            using (p.BeginBody())
+            {
+                if (Model.Requirements != null)
+                {
+                    foreach (var item in Model.Requirements)
+                    {
+                        <h6>@Html.DisplayNameFor(modelItem => item.Client) - @Html.DisplayFor(modelItem => item.Client)</h6>
+                        <h6>@Html.DisplayNameFor(modelItem => item.JobNumber) - @Html.DisplayFor(modelItem => item.JobNumber)</h6>
+                        <h6>@Html.DisplayNameFor(modelItem => item.JobTitle) - @Html.DisplayFor(modelItem => item.JobTitle)</h6>
+                        <h6>@Html.DisplayNameFor(modelItem => item.Description) - @Html.DisplayFor(modelItem => item.Description)</h6> 
+                        <h6>@Html.ActionLink("Schedule an Interview", "Create", "Interview", new { requirementId = item.RequirementId, resourceId = Model.Resource.ResourceId }, null)</h6>           
+                        <br />
+                    }
+                }                
+            }
+        }        
+    </div>    
+</div>

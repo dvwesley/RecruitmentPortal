@@ -1,0 +1,79 @@
+﻿@model RecruitmentPortal.Models.InterviewerViewModel
+@{
+    ViewBag.Title = "Interviewer Summary";
+}
+<br />
+<div class="row">
+    <div class="col-md-7 col-xs-6">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-5 col-xs-6 text-right">
+        @Html.ActionLink("Edit", "Edit/" + Model.InterviewerId, "Interviewer", null, new { @class = "btn btn-sm btn-default" })
+        @Html.ActionLink("Back to List", "Index", "Interviewer", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-10 col-sm-8 col-xs-6">
+        <h4>@Html.DisplayFor(model => model.Name)</h4>
+        <h6>@Html.DisplayFor(model => model.Address1) @Html.DisplayFor(model => model.Address2)</h6>
+        <h6>@Html.DisplayFor(model => model.CityStateZipDisplay)</h6>
+        <h6><abbr title="Phone">P:</abbr> @Html.DisplayFor(model => model.PhoneNo)</h6>
+        <h6>@Html.DisplayFor(model => model.Email)</h6>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-10 col-sm-8 col-xs-6">
+        <h5>@Html.DisplayNameFor(model => model.HourlyRate) - @Html.DisplayFor(model => model.HourlyRate)</h5>
+        <h5>@Html.DisplayNameFor(model => model.FixedFee) - @Html.DisplayFor(model => model.FixedFee)</h5>
+        <h5>@Html.DisplayNameFor(model => model.Availability) - @Html.DisplayFor(model => model.Availability)</h5>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Primary)))
+        {
+            @p.Heading("Experience Summary")
+            using (p.BeginBody())
+            {
+                <h6>@Html.DisplayFor(model => model.Summary)</h6>
+            }
+        }
+    </div>
+    <div class="col-md-4">
+        @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Primary)))
+        {
+            @p.Heading("Interview Details")
+            using (p.BeginBody())
+            {
+                if (Model.Interviews.Count() > 0)
+                {
+                    foreach (var item in Model.Interviews.GroupBy(i => i.Status))
+                    {
+                        <h6>No of Interviews @item.First().InterviewStatusDisplay - @item.Count()</h6>
+                    }
+                }
+            }
+        }
+    </div>
+    <div class="col-md-4">
+        @using (var p = Html.Bootstrap().Begin(new Panel().Style(TwitterBootstrapMVC.Infrastructure.Enums.PanelStyle.Primary)))
+        {
+            @p.Heading("Skill Set")
+            using (p.BeginBody())
+            {                
+                if (Model.InterviewerSkillSets != null && Model.InterviewerSkillSets.Count() > 0)
+                {
+                    foreach (var item in Model.InterviewerSkillSets)
+                    {
+                        <h6>@item.SkillSet.Name</h6>
+                    }
+                }
+            }
+        }
+    </div>
+</div>
+
+

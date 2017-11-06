@@ -1,0 +1,1182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MiddleInitial" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="nvarchar" MaxLength="2" />
+    <Property Name="Zipcode" Type="nvarchar" MaxLength="10" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="CreatedTimestamp" Type="datetime" />
+    <Property Name="UpdatedTimestamp" Type="datetime" />
+    <Property Name="LastLoginDate" Type="datetime" />
+    <Property Name="NoofLogins" Type="int" />
+    <Property Name="NoofAttempts" Type="int" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ClientId" />
+    </Key>
+    <Property Name="ClientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Account" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="BillingContact" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="2" />
+    <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="BlackListed" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CreatedTimestamp" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="UpdatedTimestamp" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ClientDocument">
+    <Key>
+      <PropertyRef Name="ClientDocumentId" />
+    </Key>
+    <Property Name="ClientDocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="DocumentTypeId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="100" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="250" />
+    <Property Name="ContentType" Type="nvarchar" MaxLength="100" />
+    <Property Name="UploadedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UploadedTimestamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CommissionType">
+    <Key>
+      <PropertyRef Name="CommissionTypeId" />
+    </Key>
+    <Property Name="CommissionTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Value" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="IsPercentage" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DocumentType">
+    <Key>
+      <PropertyRef Name="DocumentTypeId" />
+    </Key>
+    <Property Name="DocumentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DocumentGroup" Type="int" />
+  </EntityType>
+  <EntityType Name="Interview">
+    <Key>
+      <PropertyRef Name="InterviewId" />
+    </Key>
+    <Property Name="InterviewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ResourceId" Type="int" Nullable="false" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="MeetingLink" Type="nvarchar" MaxLength="500" />
+    <Property Name="Feedback" Type="nvarchar" MaxLength="500" />
+    <Property Name="InterviewType" Type="int" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="ClientId" Type="int" />
+    <Property Name="InterviewerId" Type="int" />
+    <Property Name="FeePaid" Type="bit" Nullable="false" />
+    <Property Name="Fee" Type="money" />
+    <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Nullable="false" />
+    <Property Name="RequirementId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CreatedTimestamp" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="UpdatedTimestamp" Type="datetime" />
+  </EntityType>
+  <EntityType Name="InterviewDetail">
+    <Key>
+      <PropertyRef Name="InterviewDetailId" />
+    </Key>
+    <Property Name="InterviewDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InterviewId" Type="int" Nullable="false" />
+    <Property Name="SkillSetId" Type="int" Nullable="false" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="250" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CreatedTimestamp" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="UpdatedTimestamp" Type="datetime" />
+  </EntityType>
+  <EntityType Name="InterviewDocument">
+    <Key>
+      <PropertyRef Name="InterviewDocumentId" />
+    </Key>
+    <Property Name="InterviewDocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InterviewId" Type="int" Nullable="false" />
+    <Property Name="DocumentTypeId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="100" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="250" />
+    <Property Name="ContentType" Type="nvarchar" MaxLength="100" />
+    <Property Name="UploadedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UploadedTimeStamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Interviewer">
+    <Key>
+      <PropertyRef Name="InterviewerId" />
+    </Key>
+    <Property Name="InterviewerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Summary" Type="nvarchar" MaxLength="1000" />
+    <Property Name="AvailableonSundays" Type="bit" Nullable="false" />
+    <Property Name="AvailableonMondays" Type="bit" Nullable="false" />
+    <Property Name="AvailableonTuesdays" Type="bit" Nullable="false" />
+    <Property Name="AvailableonWednesdays" Type="bit" Nullable="false" />
+    <Property Name="AvailableonThursdays" Type="bit" Nullable="false" />
+    <Property Name="AvailableonFridays" Type="bit" Nullable="false" />
+    <Property Name="AvailabaleonSaturdays" Type="bit" Nullable="false" />
+    <Property Name="HourlyRate" Type="money" />
+    <Property Name="FixedFee" Type="money" />
+    <Property Name="ResourceId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CreatedTimestamp" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="UpdatedTimestamp" Type="datetime" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InterviewerSkillSet">
+    <Key>
+      <PropertyRef Name="InterviewerSkillSetId" />
+    </Key>
+    <Property Name="InterviewerSkillSetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InterviewerId" Type="int" Nullable="false" />
+    <Property Name="SkillSetId" Type="int" Nullable="false" />
+    <Property Name="CreatedTimestamp" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" Nullable="false" />
+    <Property Name="ResourceId" Type="int" Nullable="false" />
+    <Property Name="InvoiceNo" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="WeekOf" Type="date" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="ProjectDetail">
+    <Key>
+      <PropertyRef Name="ProjectDetailId" />
+    </Key>
+    <Property Name="ProjectDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequirementId" Type="int" Nullable="false" />
+    <Property Name="ResourceId" Type="int" Nullable="false" />
+    <Property Name="RecruiterId" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="PlacementDate" Type="date" Nullable="false" />
+    <Property Name="AccountManagerId" Type="int" />
+  </EntityType>
+  <EntityType Name="Recruiter">
+    <Key>
+      <PropertyRef Name="RecruiterId" />
+    </Key>
+    <Property Name="RecruiterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Specialty" Type="nvarchar" MaxLength="100" />
+    <Property Name="AreasOfImprovment" Type="nvarchar" MaxLength="250" />
+    <Property Name="CareerPath" Type="nvarchar" MaxLength="250" />
+    <Property Name="Communities" Type="nvarchar" MaxLength="250" />
+    <Property Name="Salary" Type="money" />
+    <Property Name="ManagerId" Type="int" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CreatedTimestamp" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="UpdatedTimestamp" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RecruiterTarget">
+    <Key>
+      <PropertyRef Name="RecruiterTargetId" />
+    </Key>
+    <Property Name="RecruiterTargetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RecruiterId" Type="int" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="TargetDate" Type="date" Nullable="false" />
+    <Property Name="TargetType" Type="int" Nullable="false" />
+    <Property Name="TargetCount" Type="int" Nullable="false" />
+    <Property Name="TargetReached" Type="bit" Nullable="false" />
+    <Property Name="NoofResumesContributed" Type="int" />
+    <Property Name="CommissionAccrued" Type="money" />
+    <Property Name="CommissionPaid" Type="money" />
+    <Property Name="H1BContributed" Type="int" />
+    <Property Name="W2Placement" Type="int" />
+    <Property Name="CTCPlacement" Type="int" />
+    <Property Name="1099Placement" Type="int" />
+    <Property Name="CitizenPlacement" Type="int" />
+    <Property Name="CTHPlacement" Type="int" />
+    <Property Name="ProActiveHiring" Type="int" />
+    <Property Name="Profitability" Type="money" />
+    <Property Name="CommissionTypeId" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CreatedTimestamp" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="UpdatedTimestamp" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Referrer">
+    <Key>
+      <PropertyRef Name="ReferrerId" />
+    </Key>
+    <Property Name="ReferrerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MiddleInitial" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CreatedTimestamp" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="UpdatedTimestamp" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Requirement">
+    <Key>
+      <PropertyRef Name="RequirementId" />
+    </Key>
+    <Property Name="RequirementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="JobTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="Location" Type="nvarchar" MaxLength="100" />
+    <Property Name="Duration" Type="nvarchar" MaxLength="50" />
+    <Property Name="HourlyBuyRate" Type="money" />
+    <Property Name="HourlyBillingRate" Type="money" />
+    <Property Name="JobTypeId" Type="int" Nullable="false" />
+    <Property Name="OneTimeFee" Type="money" />
+    <Property Name="InternalResumeCount" Type="int" />
+    <Property Name="ClientResumeCount" Type="int" />
+    <Property Name="Status" Type="int" />
+    <Property Name="ReasonNotClosed" Type="nvarchar" MaxLength="250" />
+    <Property Name="RecruiterId" Type="int" />
+    <Property Name="Tier1ClientId" Type="int" />
+    <Property Name="Tier2ClientId" Type="int" />
+    <Property Name="AccountManagerId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CreatedTimestamp" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="UpdatedTimestamp" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RequirementDetail">
+    <Key>
+      <PropertyRef Name="RequirementDetailId" />
+    </Key>
+    <Property Name="RequirementDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequirementId" Type="int" Nullable="false" />
+    <Property Name="RecruiterId" Type="int" Nullable="false" />
+    <Property Name="ResourceId" Type="int" />
+    <Property Name="ReferredToClient" Type="bit" Nullable="false" />
+    <Property Name="CandidateSelected" Type="bit" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CreatedTimestamp" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="UpdatedTimestamp" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RequirementSkillSet">
+    <Key>
+      <PropertyRef Name="RequirementSkillSetId" />
+    </Key>
+    <Property Name="RequirementSkillSetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequirementId" Type="int" Nullable="false" />
+    <Property Name="SkillSetId" Type="int" Nullable="false" />
+    <Property Name="IsMandatory" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CreatedTimestamp" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="UpdatedTimestamp" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Resource">
+    <Key>
+      <PropertyRef Name="ResourceId" />
+    </Key>
+    <Property Name="ResourceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sex" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="ResourceTypeId" Type="int" Nullable="false" />
+    <Property Name="PhoneNo2" Type="varchar" MaxLength="50" />
+    <Property Name="Email2" Type="nvarchar" MaxLength="50" />
+    <Property Name="LinkedInProfile" Type="nvarchar" MaxLength="50" />
+    <Property Name="SkypeId" Type="nvarchar" MaxLength="50" />
+    <Property Name="YearsOfExperience" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PersonalInterview" Type="bit" Nullable="false" />
+    <Property Name="HourlyRate" Type="money" />
+    <Property Name="Salary" Type="money" />
+    <Property Name="CTC" Type="money" />
+    <Property Name="SwitchLaneInterviewed" Type="bit" Nullable="false" />
+    <Property Name="NoofClientInterviews" Type="int" />
+    <Property Name="DomainExpertise" Type="nvarchar" MaxLength="500" />
+    <Property Name="LocationPreference" Type="nvarchar" MaxLength="100" />
+    <Property Name="BackgroundCheck" Type="bit" Nullable="false" />
+    <Property Name="EducationCertificates" Type="bit" Nullable="false" />
+    <Property Name="VisaCopy" Type="bit" Nullable="false" />
+    <Property Name="PassPortCopy" Type="bit" Nullable="false" />
+    <Property Name="LicenseCopy" Type="bit" Nullable="false" />
+    <Property Name="PhotoId" Type="bit" Nullable="false" />
+    <Property Name="I9Form" Type="bit" Nullable="false" />
+    <Property Name="GreenCardDocuments" Type="bit" Nullable="false" />
+    <Property Name="PayStubs" Type="bit" Nullable="false" />
+    <Property Name="W2Copy" Type="bit" Nullable="false" />
+    <Property Name="MaritalStatus" Type="varchar" MaxLength="1" />
+    <Property Name="NoofKids" Type="int" />
+    <Property Name="Anniversary" Type="date" />
+    <Property Name="LastMeetingDate" Type="date" />
+    <Property Name="NextMeetingDate" Type="date" />
+    <Property Name="TrainingAreas" Type="nvarchar" MaxLength="500" />
+    <Property Name="ClientId" Type="int" />
+    <Property Name="ProjectEndDate" Type="date" />
+    <Property Name="SpouseDOB" Type="date" />
+    <Property Name="Kid1DOB" Type="date" />
+    <Property Name="Kid2DOB" Type="date" />
+    <Property Name="ReferrerId" Type="int" />
+    <Property Name="ReferralAmountDue" Type="money" />
+    <Property Name="ReferredConsultantId" Type="int" />
+    <Property Name="Tier1VendorId" Type="int" />
+    <Property Name="Tier2VendorId" Type="int" />
+    <Property Name="USExperience" Type="float" />
+    <Property Name="VisaExpirationDate" Type="date" />
+    <Property Name="EAD" Type="bit" Nullable="false" />
+    <Property Name="OPT" Type="bit" Nullable="false" />
+    <Property Name="SSN" Type="int" />
+    <Property Name="NDA" Type="bit" Nullable="false" />
+    <Property Name="Source" Type="nvarchar" MaxLength="100" />
+    <Property Name="Availability" Type="nvarchar" MaxLength="100" />
+    <Property Name="BlackListed" Type="bit" Nullable="false" />
+    <Property Name="Notes" Type="ntext" />
+    <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+    <Property Name="ResidentialStatus" Type="varchar" MaxLength="1" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CreatedTime" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="UpdatedTime" Type="datetime" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="VisaType" Type="nvarchar" MaxLength="10" />
+    <Property Name="Ref1CompanyName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Ref1Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Ref1Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ref1Phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="Ref1Designation" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ref2CompanyName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Ref2Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Ref2Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ref2Phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="Ref2Designation" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ref3CompanyName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Ref3Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Ref3Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ref3Phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="Ref3Designation" Type="nvarchar" MaxLength="50" />
+    <Property Name="Medical" Type="bit" Nullable="false" />
+    <Property Name="Vision" Type="bit" Nullable="false" />
+    <Property Name="Dental" Type="bit" Nullable="false" />
+    <Property Name="Relocation" Type="bit" Nullable="false" />
+    <Property Name="FourZeroOneK" Type="bit" Nullable="false" />
+    <Property Name="STD" Type="bit" Nullable="false" />
+    <Property Name="LTD" Type="bit" Nullable="false" />
+    <Property Name="LifeInsurance" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ResourceDocument">
+    <Key>
+      <PropertyRef Name="ResourceDocumentId" />
+    </Key>
+    <Property Name="ResourceDocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ResourceId" Type="int" Nullable="false" />
+    <Property Name="DocumentTypeId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="100" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="250" />
+    <Property Name="ContentType" Type="nvarchar" MaxLength="100" />
+    <Property Name="UploadedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UploadedTimestamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ResourceSkillSet">
+    <Key>
+      <PropertyRef Name="ResourceSkillSetId" />
+    </Key>
+    <Property Name="ResourceSkillSetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ResourceId" Type="int" Nullable="false" />
+    <Property Name="SkillSetId" Type="int" Nullable="false" />
+    <Property Name="SelfRating" Type="int" />
+    <Property Name="SelfComments" Type="nvarchar" MaxLength="100" />
+    <Property Name="RecruiterRating" Type="int" />
+    <Property Name="RecruiterComments" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ResourceType">
+    <Key>
+      <PropertyRef Name="ResourceTypeId" />
+    </Key>
+    <Property Name="ResourceTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SkillSet">
+    <Key>
+      <PropertyRef Name="SkillSetId" />
+    </Key>
+    <Property Name="SkillSetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Timesheet">
+    <Key>
+      <PropertyRef Name="TimesheetId" />
+    </Key>
+    <Property Name="TimesheetId" Type="int" Nullable="false" />
+    <Property Name="ResourceId" Type="int" Nullable="false" />
+    <Property Name="WeekOf" Type="date" Nullable="false" />
+    <Property Name="BillableHours" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="ProjectDetailId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="VendorId" />
+    </Key>
+    <Property Name="VendorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="2" />
+    <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="BillingContact" Type="nvarchar" MaxLength="100" />
+    <Property Name="Terms" Type="nvarchar" MaxLength="500" />
+    <Property Name="W9" Type="bit" Nullable="false" />
+    <Property Name="InsuranceCertificates" Type="bit" Nullable="false" />
+    <Property Name="Contracts" Type="bit" Nullable="false" />
+    <Property Name="BlackListed" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CreatedTimestamp" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="UpdatedTimestamp" Type="datetime" />
+  </EntityType>
+  <EntityType Name="VendorDocument">
+    <Key>
+      <PropertyRef Name="VendorDocumentId" />
+    </Key>
+    <Property Name="VendorDocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VendorId" Type="int" Nullable="false" />
+    <Property Name="DocumentTypeId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="100" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="250" />
+    <Property Name="ContentType" Type="nvarchar" MaxLength="100" />
+    <Property Name="UploadedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UploadedTimestamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ClientDocument_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="ClientDocument" Type="Self.ClientDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="ClientDocument">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientDocument_DocumentType">
+    <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+    <End Role="ClientDocument" Type="Self.ClientDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentType">
+        <PropertyRef Name="DocumentTypeId" />
+      </Principal>
+      <Dependent Role="ClientDocument">
+        <PropertyRef Name="DocumentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Interview_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Interview" Type="Self.Interview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="Interview">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Interview_Interviewer">
+    <End Role="Interviewer" Type="Self.Interviewer" Multiplicity="0..1" />
+    <End Role="Interview" Type="Self.Interview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Interviewer">
+        <PropertyRef Name="InterviewerId" />
+      </Principal>
+      <Dependent Role="Interview">
+        <PropertyRef Name="InterviewerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Interview_Requirement">
+    <End Role="Requirement" Type="Self.Requirement" Multiplicity="0..1" />
+    <End Role="Interview" Type="Self.Interview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requirement">
+        <PropertyRef Name="RequirementId" />
+      </Principal>
+      <Dependent Role="Interview">
+        <PropertyRef Name="RequirementId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Interview_Resource">
+    <End Role="Resource" Type="Self.Resource" Multiplicity="1" />
+    <End Role="Interview" Type="Self.Interview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resource">
+        <PropertyRef Name="ResourceId" />
+      </Principal>
+      <Dependent Role="Interview">
+        <PropertyRef Name="ResourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InterviewDetail_Interview">
+    <End Role="Interview" Type="Self.Interview" Multiplicity="1" />
+    <End Role="InterviewDetail" Type="Self.InterviewDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Interview">
+        <PropertyRef Name="InterviewId" />
+      </Principal>
+      <Dependent Role="InterviewDetail">
+        <PropertyRef Name="InterviewId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InterviewDetail_SkillSet">
+    <End Role="SkillSet" Type="Self.SkillSet" Multiplicity="1" />
+    <End Role="InterviewDetail" Type="Self.InterviewDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SkillSet">
+        <PropertyRef Name="SkillSetId" />
+      </Principal>
+      <Dependent Role="InterviewDetail">
+        <PropertyRef Name="SkillSetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InterviewDocument_DocumentType">
+    <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+    <End Role="InterviewDocument" Type="Self.InterviewDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentType">
+        <PropertyRef Name="DocumentTypeId" />
+      </Principal>
+      <Dependent Role="InterviewDocument">
+        <PropertyRef Name="DocumentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InterviewDocument_Interview">
+    <End Role="Interview" Type="Self.Interview" Multiplicity="1" />
+    <End Role="InterviewDocument" Type="Self.InterviewDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Interview">
+        <PropertyRef Name="InterviewId" />
+      </Principal>
+      <Dependent Role="InterviewDocument">
+        <PropertyRef Name="InterviewId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Interviewer_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Interviewer" Type="Self.Interviewer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Interviewer">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Interviewer_Resource">
+    <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+    <End Role="Interviewer" Type="Self.Interviewer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resource">
+        <PropertyRef Name="ResourceId" />
+      </Principal>
+      <Dependent Role="Interviewer">
+        <PropertyRef Name="ResourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InterviewerSkillSet_Interviewer">
+    <End Role="Interviewer" Type="Self.Interviewer" Multiplicity="1" />
+    <End Role="InterviewerSkillSet" Type="Self.InterviewerSkillSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Interviewer">
+        <PropertyRef Name="InterviewerId" />
+      </Principal>
+      <Dependent Role="InterviewerSkillSet">
+        <PropertyRef Name="InterviewerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InterviewerSkillSet_SkillSet">
+    <End Role="SkillSet" Type="Self.SkillSet" Multiplicity="1" />
+    <End Role="InterviewerSkillSet" Type="Self.InterviewerSkillSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SkillSet">
+        <PropertyRef Name="SkillSetId" />
+      </Principal>
+      <Dependent Role="InterviewerSkillSet">
+        <PropertyRef Name="SkillSetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_Resource">
+    <End Role="Resource" Type="Self.Resource" Multiplicity="1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resource">
+        <PropertyRef Name="ResourceId" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="ResourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetail_Recruiter">
+    <End Role="Recruiter" Type="Self.Recruiter" Multiplicity="1" />
+    <End Role="ProjectDetail" Type="Self.ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recruiter">
+        <PropertyRef Name="RecruiterId" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="RecruiterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetail_Requirement">
+    <End Role="Requirement" Type="Self.Requirement" Multiplicity="1" />
+    <End Role="ProjectDetail" Type="Self.ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requirement">
+        <PropertyRef Name="RequirementId" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="RequirementId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetail_Resource">
+    <End Role="Resource" Type="Self.Resource" Multiplicity="1" />
+    <End Role="ProjectDetail" Type="Self.ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resource">
+        <PropertyRef Name="ResourceId" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="ResourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recruiter_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Recruiter" Type="Self.Recruiter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recruiter">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecruiterTarget_CommissionType">
+    <End Role="CommissionType" Type="Self.CommissionType" Multiplicity="1" />
+    <End Role="RecruiterTarget" Type="Self.RecruiterTarget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommissionType">
+        <PropertyRef Name="CommissionTypeId" />
+      </Principal>
+      <Dependent Role="RecruiterTarget">
+        <PropertyRef Name="CommissionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecruiterTarget_Recruiter">
+    <End Role="Recruiter" Type="Self.Recruiter" Multiplicity="1" />
+    <End Role="RecruiterTarget" Type="Self.RecruiterTarget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recruiter">
+        <PropertyRef Name="RecruiterId" />
+      </Principal>
+      <Dependent Role="RecruiterTarget">
+        <PropertyRef Name="RecruiterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requirement_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Requirement" Type="Self.Requirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="Requirement">
+        <PropertyRef Name="Tier1ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requirement_Client1">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Requirement" Type="Self.Requirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="Requirement">
+        <PropertyRef Name="Tier2ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequirementDetail_Recruiter">
+    <End Role="Recruiter" Type="Self.Recruiter" Multiplicity="1" />
+    <End Role="RequirementDetail" Type="Self.RequirementDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recruiter">
+        <PropertyRef Name="RecruiterId" />
+      </Principal>
+      <Dependent Role="RequirementDetail">
+        <PropertyRef Name="RecruiterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequirementDetail_Requirement">
+    <End Role="Requirement" Type="Self.Requirement" Multiplicity="1" />
+    <End Role="RequirementDetail" Type="Self.RequirementDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requirement">
+        <PropertyRef Name="RequirementId" />
+      </Principal>
+      <Dependent Role="RequirementDetail">
+        <PropertyRef Name="RequirementId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequirementDetail_Resource">
+    <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+    <End Role="RequirementDetail" Type="Self.RequirementDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resource">
+        <PropertyRef Name="ResourceId" />
+      </Principal>
+      <Dependent Role="RequirementDetail">
+        <PropertyRef Name="ResourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequirementSkillSet_Requirement">
+    <End Role="Requirement" Type="Self.Requirement" Multiplicity="1" />
+    <End Role="RequirementSkillSet" Type="Self.RequirementSkillSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requirement">
+        <PropertyRef Name="RequirementId" />
+      </Principal>
+      <Dependent Role="RequirementSkillSet">
+        <PropertyRef Name="RequirementId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequirementSkillSet_SkillSet">
+    <End Role="SkillSet" Type="Self.SkillSet" Multiplicity="1" />
+    <End Role="RequirementSkillSet" Type="Self.RequirementSkillSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SkillSet">
+        <PropertyRef Name="SkillSetId" />
+      </Principal>
+      <Dependent Role="RequirementSkillSet">
+        <PropertyRef Name="SkillSetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resource_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Resource" Type="Self.Resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Resource">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resource_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Resource" Type="Self.Resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="Resource">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resource_Referrer">
+    <End Role="Referrer" Type="Self.Referrer" Multiplicity="0..1" />
+    <End Role="Resource" Type="Self.Resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Referrer">
+        <PropertyRef Name="ReferrerId" />
+      </Principal>
+      <Dependent Role="Resource">
+        <PropertyRef Name="ReferrerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resource_ResourceType">
+    <End Role="ResourceType" Type="Self.ResourceType" Multiplicity="1" />
+    <End Role="Resource" Type="Self.Resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResourceType">
+        <PropertyRef Name="ResourceTypeId" />
+      </Principal>
+      <Dependent Role="Resource">
+        <PropertyRef Name="ResourceTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resource_Vendor">
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="0..1" />
+    <End Role="Resource" Type="Self.Resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="VendorId" />
+      </Principal>
+      <Dependent Role="Resource">
+        <PropertyRef Name="Tier1VendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resource_Vendor1">
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="0..1" />
+    <End Role="Resource" Type="Self.Resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="VendorId" />
+      </Principal>
+      <Dependent Role="Resource">
+        <PropertyRef Name="Tier2VendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResourceDocument_DocumentType">
+    <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+    <End Role="ResourceDocument" Type="Self.ResourceDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentType">
+        <PropertyRef Name="DocumentTypeId" />
+      </Principal>
+      <Dependent Role="ResourceDocument">
+        <PropertyRef Name="DocumentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResourceDocument_Resource">
+    <End Role="Resource" Type="Self.Resource" Multiplicity="1" />
+    <End Role="ResourceDocument" Type="Self.ResourceDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resource">
+        <PropertyRef Name="ResourceId" />
+      </Principal>
+      <Dependent Role="ResourceDocument">
+        <PropertyRef Name="ResourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResourceSkillSet_Resource">
+    <End Role="Resource" Type="Self.Resource" Multiplicity="1" />
+    <End Role="ResourceSkillSet" Type="Self.ResourceSkillSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resource">
+        <PropertyRef Name="ResourceId" />
+      </Principal>
+      <Dependent Role="ResourceSkillSet">
+        <PropertyRef Name="ResourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResourceSkillSet_SkillSet">
+    <End Role="SkillSet" Type="Self.SkillSet" Multiplicity="1" />
+    <End Role="ResourceSkillSet" Type="Self.ResourceSkillSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SkillSet">
+        <PropertyRef Name="SkillSetId" />
+      </Principal>
+      <Dependent Role="ResourceSkillSet">
+        <PropertyRef Name="SkillSetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timesheet_ProjectDetail">
+    <End Role="ProjectDetail" Type="Self.ProjectDetail" Multiplicity="1" />
+    <End Role="Timesheet" Type="Self.Timesheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectDetail">
+        <PropertyRef Name="ProjectDetailId" />
+      </Principal>
+      <Dependent Role="Timesheet">
+        <PropertyRef Name="ProjectDetailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timesheet_Resource">
+    <End Role="Resource" Type="Self.Resource" Multiplicity="1" />
+    <End Role="Timesheet" Type="Self.Timesheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resource">
+        <PropertyRef Name="ResourceId" />
+      </Principal>
+      <Dependent Role="Timesheet">
+        <PropertyRef Name="ResourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendorDocument_DocumentType">
+    <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+    <End Role="VendorDocument" Type="Self.VendorDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentType">
+        <PropertyRef Name="DocumentTypeId" />
+      </Principal>
+      <Dependent Role="VendorDocument">
+        <PropertyRef Name="DocumentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendorDocument_Vendor">
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+    <End Role="VendorDocument" Type="Self.VendorDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="VendorId" />
+      </Principal>
+      <Dependent Role="VendorDocument">
+        <PropertyRef Name="VendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RPModelStoreContainer">
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClientDocument" EntityType="Self.ClientDocument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CommissionType" EntityType="Self.CommissionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentType" EntityType="Self.DocumentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Interview" EntityType="Self.Interview" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InterviewDetail" EntityType="Self.InterviewDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InterviewDocument" EntityType="Self.InterviewDocument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Interviewer" EntityType="Self.Interviewer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InterviewerSkillSet" EntityType="Self.InterviewerSkillSet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectDetail" EntityType="Self.ProjectDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Recruiter" EntityType="Self.Recruiter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RecruiterTarget" EntityType="Self.RecruiterTarget" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Referrer" EntityType="Self.Referrer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Requirement" EntityType="Self.Requirement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequirementDetail" EntityType="Self.RequirementDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequirementSkillSet" EntityType="Self.RequirementSkillSet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Resource" EntityType="Self.Resource" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ResourceDocument" EntityType="Self.ResourceDocument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ResourceSkillSet" EntityType="Self.ResourceSkillSet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ResourceType" EntityType="Self.ResourceType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SkillSet" EntityType="Self.SkillSet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Timesheet" EntityType="Self.Timesheet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VendorDocument" EntityType="Self.VendorDocument" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ClientDocument_Client" Association="Self.FK_ClientDocument_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="ClientDocument" EntitySet="ClientDocument" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientDocument_DocumentType" Association="Self.FK_ClientDocument_DocumentType">
+      <End Role="DocumentType" EntitySet="DocumentType" />
+      <End Role="ClientDocument" EntitySet="ClientDocument" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Interview_Client" Association="Self.FK_Interview_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Interview" EntitySet="Interview" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Interview_Interviewer" Association="Self.FK_Interview_Interviewer">
+      <End Role="Interviewer" EntitySet="Interviewer" />
+      <End Role="Interview" EntitySet="Interview" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Interview_Requirement" Association="Self.FK_Interview_Requirement">
+      <End Role="Requirement" EntitySet="Requirement" />
+      <End Role="Interview" EntitySet="Interview" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Interview_Resource" Association="Self.FK_Interview_Resource">
+      <End Role="Resource" EntitySet="Resource" />
+      <End Role="Interview" EntitySet="Interview" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InterviewDetail_Interview" Association="Self.FK_InterviewDetail_Interview">
+      <End Role="Interview" EntitySet="Interview" />
+      <End Role="InterviewDetail" EntitySet="InterviewDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InterviewDetail_SkillSet" Association="Self.FK_InterviewDetail_SkillSet">
+      <End Role="SkillSet" EntitySet="SkillSet" />
+      <End Role="InterviewDetail" EntitySet="InterviewDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InterviewDocument_DocumentType" Association="Self.FK_InterviewDocument_DocumentType">
+      <End Role="DocumentType" EntitySet="DocumentType" />
+      <End Role="InterviewDocument" EntitySet="InterviewDocument" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InterviewDocument_Interview" Association="Self.FK_InterviewDocument_Interview">
+      <End Role="Interview" EntitySet="Interview" />
+      <End Role="InterviewDocument" EntitySet="InterviewDocument" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Interviewer_AspNetUsers" Association="Self.FK_Interviewer_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Interviewer" EntitySet="Interviewer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Interviewer_Resource" Association="Self.FK_Interviewer_Resource">
+      <End Role="Resource" EntitySet="Resource" />
+      <End Role="Interviewer" EntitySet="Interviewer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InterviewerSkillSet_Interviewer" Association="Self.FK_InterviewerSkillSet_Interviewer">
+      <End Role="Interviewer" EntitySet="Interviewer" />
+      <End Role="InterviewerSkillSet" EntitySet="InterviewerSkillSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InterviewerSkillSet_SkillSet" Association="Self.FK_InterviewerSkillSet_SkillSet">
+      <End Role="SkillSet" EntitySet="SkillSet" />
+      <End Role="InterviewerSkillSet" EntitySet="InterviewerSkillSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_Resource" Association="Self.FK_Invoice_Resource">
+      <End Role="Resource" EntitySet="Resource" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetail_Recruiter" Association="Self.FK_ProjectDetail_Recruiter">
+      <End Role="Recruiter" EntitySet="Recruiter" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetail_Requirement" Association="Self.FK_ProjectDetail_Requirement">
+      <End Role="Requirement" EntitySet="Requirement" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetail_Resource" Association="Self.FK_ProjectDetail_Resource">
+      <End Role="Resource" EntitySet="Resource" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recruiter_AspNetUsers" Association="Self.FK_Recruiter_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Recruiter" EntitySet="Recruiter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecruiterTarget_CommissionType" Association="Self.FK_RecruiterTarget_CommissionType">
+      <End Role="CommissionType" EntitySet="CommissionType" />
+      <End Role="RecruiterTarget" EntitySet="RecruiterTarget" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecruiterTarget_Recruiter" Association="Self.FK_RecruiterTarget_Recruiter">
+      <End Role="Recruiter" EntitySet="Recruiter" />
+      <End Role="RecruiterTarget" EntitySet="RecruiterTarget" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requirement_Client" Association="Self.FK_Requirement_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Requirement" EntitySet="Requirement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requirement_Client1" Association="Self.FK_Requirement_Client1">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Requirement" EntitySet="Requirement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequirementDetail_Recruiter" Association="Self.FK_RequirementDetail_Recruiter">
+      <End Role="Recruiter" EntitySet="Recruiter" />
+      <End Role="RequirementDetail" EntitySet="RequirementDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequirementDetail_Requirement" Association="Self.FK_RequirementDetail_Requirement">
+      <End Role="Requirement" EntitySet="Requirement" />
+      <End Role="RequirementDetail" EntitySet="RequirementDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequirementDetail_Resource" Association="Self.FK_RequirementDetail_Resource">
+      <End Role="Resource" EntitySet="Resource" />
+      <End Role="RequirementDetail" EntitySet="RequirementDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequirementSkillSet_Requirement" Association="Self.FK_RequirementSkillSet_Requirement">
+      <End Role="Requirement" EntitySet="Requirement" />
+      <End Role="RequirementSkillSet" EntitySet="RequirementSkillSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequirementSkillSet_SkillSet" Association="Self.FK_RequirementSkillSet_SkillSet">
+      <End Role="SkillSet" EntitySet="SkillSet" />
+      <End Role="RequirementSkillSet" EntitySet="RequirementSkillSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resource_AspNetUsers" Association="Self.FK_Resource_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Resource" EntitySet="Resource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resource_Client" Association="Self.FK_Resource_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Resource" EntitySet="Resource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resource_Referrer" Association="Self.FK_Resource_Referrer">
+      <End Role="Referrer" EntitySet="Referrer" />
+      <End Role="Resource" EntitySet="Resource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resource_ResourceType" Association="Self.FK_Resource_ResourceType">
+      <End Role="ResourceType" EntitySet="ResourceType" />
+      <End Role="Resource" EntitySet="Resource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resource_Vendor" Association="Self.FK_Resource_Vendor">
+      <End Role="Vendor" EntitySet="Vendor" />
+      <End Role="Resource" EntitySet="Resource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resource_Vendor1" Association="Self.FK_Resource_Vendor1">
+      <End Role="Vendor" EntitySet="Vendor" />
+      <End Role="Resource" EntitySet="Resource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResourceDocument_DocumentType" Association="Self.FK_ResourceDocument_DocumentType">
+      <End Role="DocumentType" EntitySet="DocumentType" />
+      <End Role="ResourceDocument" EntitySet="ResourceDocument" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResourceDocument_Resource" Association="Self.FK_ResourceDocument_Resource">
+      <End Role="Resource" EntitySet="Resource" />
+      <End Role="ResourceDocument" EntitySet="ResourceDocument" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResourceSkillSet_Resource" Association="Self.FK_ResourceSkillSet_Resource">
+      <End Role="Resource" EntitySet="Resource" />
+      <End Role="ResourceSkillSet" EntitySet="ResourceSkillSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResourceSkillSet_SkillSet" Association="Self.FK_ResourceSkillSet_SkillSet">
+      <End Role="SkillSet" EntitySet="SkillSet" />
+      <End Role="ResourceSkillSet" EntitySet="ResourceSkillSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timesheet_ProjectDetail" Association="Self.FK_Timesheet_ProjectDetail">
+      <End Role="ProjectDetail" EntitySet="ProjectDetail" />
+      <End Role="Timesheet" EntitySet="Timesheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timesheet_Resource" Association="Self.FK_Timesheet_Resource">
+      <End Role="Resource" EntitySet="Resource" />
+      <End Role="Timesheet" EntitySet="Timesheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendorDocument_DocumentType" Association="Self.FK_VendorDocument_DocumentType">
+      <End Role="DocumentType" EntitySet="DocumentType" />
+      <End Role="VendorDocument" EntitySet="VendorDocument" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendorDocument_Vendor" Association="Self.FK_VendorDocument_Vendor">
+      <End Role="Vendor" EntitySet="Vendor" />
+      <End Role="VendorDocument" EntitySet="VendorDocument" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

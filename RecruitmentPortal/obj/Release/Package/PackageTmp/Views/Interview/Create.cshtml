@@ -1,0 +1,106 @@
+﻿@model RecruitmentPortal.Models.Interview
+@{
+    ViewBag.Title = "Schedule an Interview";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "Interview", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()    
+    @Html.HiddenFor(model => model.Status)
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DropDownListFor(model => model.RequirementId, (IEnumerable<SelectListItem>)ViewBag.Requirements).OptionLabel("-- Select --")
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DropDownListFor(model => model.ResourceId, (IEnumerable<SelectListItem>)ViewBag.Resources).OptionLabel("-- Select --")
+        </div>
+    </div>    
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class=" form-group">
+                <label for="StartTime">Start Date/Time<span style="color:red">*</span></label>
+                <div class="input-group date">
+                    @Html.TextBoxFor(model => model.StartTime, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+                @Html.ValidationMessageFor(model => model.StartTime)
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @f.FormGroup().DropDownList("StHours", (IEnumerable<SelectListItem>)ViewBag.Hours).OptionLabel("-- Select --").Label().LabelText("Hours").ShowRequiredStar(true)
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @f.FormGroup().DropDownList("StMinutes", (IEnumerable<SelectListItem>)ViewBag.Minutes).OptionLabel("-- Select --").Label().LabelText("Minutes").ShowRequiredStar(true)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class=" form-group">
+                <label for="EndTime">End Date/Time<span style="color:red">*</span></label>
+                <div class="input-group date">
+                    @Html.TextBoxFor(model => model.EndTime, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+                @Html.ValidationMessageFor(model => model.EndTime)
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @f.FormGroup().DropDownList("EndHours", (IEnumerable<SelectListItem>)ViewBag.Hours).OptionLabel("-- Select --").Label().LabelText("Hours").ShowRequiredStar(true)
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @f.FormGroup().DropDownList("EndMinutes", (IEnumerable<SelectListItem>)ViewBag.Minutes).OptionLabel("-- Select --").Label().LabelText("Minutes").ShowRequiredStar(true)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.PhoneNo)
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.MeetingLink)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class=" form-group">
+                <label for="InterviewType">Interview Type<span style="color:red;">*</span></label>
+                <div class="input-list-container">
+                    <div class='radio checkbox-inline' style="vertical-align:bottom;"><label for="InterviewType_0">@Html.RadioButtonFor(model => model.InterviewType, "1")SwitchLane</label></div>
+                    <div class='radio checkbox-inline' style="vertical-align:bottom;"><label for="InterviewType_1">@Html.RadioButtonFor(model => model.InterviewType, "2")Client</label></div>                    
+                </div>
+                @Html.ValidationMessageFor(model => model.InterviewType)
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DropDownListFor(model => model.InterviewerId, (IEnumerable<SelectListItem>)ViewBag.Interviewers).OptionLabel("-- Select --")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.Fee).Prepend("$").Format("{0:0.00}")
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">            
+        </div>
+    </div>
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit").Class("btn btn-sm btn-default")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/interviewcreate/js")
+}

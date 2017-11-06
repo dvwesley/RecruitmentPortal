@@ -1,0 +1,98 @@
+﻿@model RecruitmentPortal.Models.RequirementDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RequirementDetail</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RecruiterId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecruiterId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReferredToClient)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReferredToClient)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CandidateSelected)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CandidateSelected)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedTimestamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedTimestamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedTimestamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedTimestamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Requirement.JobNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Requirement.JobNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resource.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resource.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RequirementDetailId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

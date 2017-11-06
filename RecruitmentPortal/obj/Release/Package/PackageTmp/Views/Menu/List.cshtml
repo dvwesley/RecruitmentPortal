@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+}
+<ul class="nav navbar-nav navbar-right" id="appMenus">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("About", "About", "Home")</li>
+    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    @*
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Consultants <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Manage Profile", "Index", "Resource")</li>
+            <li>@Html.ActionLink("Manage Documents", "Index", "ResourceDocument", new { resourceId = 1 }, null)</li>
+            <li>@Html.ActionLink("Manage SkillSet", "Index", "ResourceSkillSet", new { resourceId = 1 }, null)</li>
+        </ul>
+    </li>
+    *@
+</ul>

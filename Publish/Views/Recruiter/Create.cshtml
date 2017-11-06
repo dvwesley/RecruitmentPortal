@@ -1,0 +1,100 @@
+﻿@model RecruitmentPortal.Models.RecruiterViewModel
+@{
+    ViewBag.Title = "Create a Recruiter";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "Recruiter", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    using (var tabs = Html.Bootstrap().Begin(new Tabs("Recruiter")))
+    {
+        @tabs.Tab("Personal Info")
+        @tabs.Tab("Other Details")        
+        using (tabs.BeginPanel())
+        {
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Email).Placeholder("search by email").Append(Html.Bootstrap().Button().Text("Search").Id("btnSearchUser"))
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.FirstName)
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.MiddleInitial)
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.LastName)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Address1)
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Address2)
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.City)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">                    
+                    @f.FormGroup().DropDownListFor(model => model.State, (IEnumerable<SelectListItem>) ViewBag.States).OptionLabel("-- Select --")
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Zipcode)
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.PhoneNo)
+                </div>
+            </div>            
+        }
+        using (tabs.BeginPanel())
+        {
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Salary).Prepend("$").Format("{0:0.00}")
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Specialty)
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.AreasOfImprovment)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.CareerPath)
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Communities)
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    @f.FormGroup().DropDownListFor(model => model.ManagerId, (IEnumerable<SelectListItem>)ViewBag.Recruiters).OptionLabel("-- Select --")
+                </div>
+            </div>            
+        }        
+    }
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit").Class("btn btn-sm btn-default")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/usersearch/js")
+}

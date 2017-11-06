@@ -1,0 +1,40 @@
+﻿@model RecruitmentPortal.Models.VendorDocument
+@{
+    ViewBag.Title = "Upload Document";
+}
+<br />
+<div class="row">
+    <div class="col-md-7 col-xs-6">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-5 col-xs-6 text-right">
+        @Html.ActionLink("Vendor List", "Index", "Vendor", null, new { @class = "btn btn-sm btn-default" })
+        @Html.ActionLink("Document List", "Index", "VendorDocument", new { vendorId = Model.VendorId }, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form().Id("VendorDocument").FormMethod(FormMethod.Post).HtmlAttributes(new { @enctype = "multipart/form-data" })))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.VendorId)
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DropDownListFor(model => model.DocumentTypeId, (IEnumerable<SelectListItem>)ViewBag.DocumentTypes).OptionLabel("-- Select --")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.Description)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().File("UploadFile1").HtmlAttributes(new { @class = "form-control" }).Label().LabelText("Upload File").ShowRequiredStar(true)
+        </div>
+    </div>
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit").Text("Upload").Class("btn btn-sm btn-default")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/documentupload/js")
+}

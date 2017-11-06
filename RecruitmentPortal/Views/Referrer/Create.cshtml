@@ -1,0 +1,31 @@
+﻿@model RecruitmentPortal.Models.Referrer
+@{
+    ViewBag.Title = "Create a Referrer";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "Referrer", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.FirstName)
+            @f.FormGroup().TextBoxFor(model => model.MiddleInitial)
+            @f.FormGroup().TextBoxFor(model => model.LastName)
+            @f.FormGroup().TextBoxFor(model => model.Email)
+            @f.FormGroup().TextBoxFor(model => model.PhoneNo)
+        </div>
+    </div>
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit").Class("btn btn-sm btn-default")
+} 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

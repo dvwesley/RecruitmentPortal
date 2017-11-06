@@ -1,0 +1,79 @@
+﻿@model RecruitmentPortal.Models.RequirementDetailViewModel
+@{
+    ViewBag.Title = "Refer Consultants";
+}
+<br />
+<div class="row">
+    <div class="col-md-7 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-5 col-xs-5 text-right">
+        @Html.ActionLink("Requirement List", "Index", "Requirement", new { requirementId = Model.RequirementId }, new { @class = "btn btn-sm btn-default" })
+        @Html.ActionLink("Back to List", "Index", "RequirementDetail", new { requirementId = Model.RequirementId }, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("ResourceIds")
+    @Html.HiddenFor(model => model.RequirementId)
+    <div class="row">
+        <div class="col-md-4 col-xs-12 col-sm-6">
+            @(f.FormGroup().TextBox("txtConsultantName").Placeholder("consultant name").Append(Html.Bootstrap().Button().Text("Search").Id("btnSearch")).Label().LabelText(""))
+        </div>
+    </div>
+    <br />        
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">            
+            @using (Html.Bootstrap().Begin(new Table().Bordered().Condensed().Hover().Id("ConsultantListTable").Caption("Search for more Consultants")))
+            {
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>                        
+                        <th>Availability</th>
+                        <th>Project End Date</th>
+                    </tr>
+                </thead>
+                <tbody>                    
+                </tbody>
+            }           
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            @using (Html.Bootstrap().Begin(new Table().Bordered().Condensed().Hover().Id("SuggestedConsultantListTable").Caption("Suggested Consultants").Class("table-striped table-hover")))
+            {
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Availability</th>
+                        <th>Project End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Resources)
+                    {
+                        <tr class="warning">
+                            <td>@Html.CheckBoxFor(modelItem => item.ConsultantList, new { @class = "resource-checkbox", @value = item.ResourceId }) </td>
+                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Availability)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ProjectEndDate)</td>
+                        </tr>
+                    }
+                </tbody>
+            }
+        </div>    
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">                                    
+            @f.FormGroup().DropDownListFor(model => model.RecruiterId, (SelectList)ViewBag.Recruiters).OptionLabel("--Select--")
+            @f.FormGroup().TextAreaFor(model => model.Notes)
+        </div>
+    </div>
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/views/requirementdetail_create.js"></script>
+        }

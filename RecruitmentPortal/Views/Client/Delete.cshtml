@@ -1,0 +1,36 @@
+﻿@model RecruitmentPortal.Models.Client
+@{
+    ViewBag.Title = "Delete Client";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>Delete this Client?</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "Client", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DisplayFor(model => model.Name)         
+            @f.FormGroup().DisplayFor(model => model.PhoneNo)            
+            @f.FormGroup().DisplayFor(model => model.Address1)
+            @f.FormGroup().DisplayFor(model => model.City)
+            @f.FormGroup().DisplayFor(model => model.ZipCode)
+            @f.FormGroup().DisplayFor(model => model.BlackListedDisplay)
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DisplayFor(model => model.Account)
+            @f.FormGroup().DisplayFor(model => model.Email)
+            @f.FormGroup().DisplayFor(model => model.Address2)
+            @f.FormGroup().DisplayFor(model => model.State)
+            @f.FormGroup().DisplayFor(model => model.BillingContact)
+        </div>
+    </div>
+    @Html.Bootstrap().SubmitButton().Text("Delete").Class("btn btn-sm btn-default")
+}

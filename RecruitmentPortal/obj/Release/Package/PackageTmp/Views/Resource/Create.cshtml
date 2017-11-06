@@ -1,0 +1,78 @@
+﻿@model RecruitmentPortal.Models.ResourceViewModel
+@{
+    ViewBag.Title = "Create Consultant";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "Resource", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()    
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DropDownListFor(model => model.ResourceTypeId,  (IEnumerable<SelectListItem>) ViewBag.ResourceTypes).OptionLabel("-- Select --")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.FirstName)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.MiddleInitial)
+        </div>
+    </div>
+    <div class="row">        
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.LastName)
+        </div>
+    </div>
+    <div class="row">        
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.PhoneNo)
+        </div>
+    </div>
+    <div class="row">        
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.Email)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-7 col-xs-12">
+            <div class=" form-group">
+                <label for="DOB">DOB<span style="color:red">*</span></label>
+                <div class="input-group date">
+                    @Html.TextBoxFor(model => model.DOB, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+                @Html.ValidationMessageFor(model => model.DOB)
+            </div>
+        </div>
+    </div>
+    <div class="row">        
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class=" form-group">
+                <label for="Sex">Sex<span style="color:red">*</span></label>
+                <div class="input-list-container">
+                    <div class='radio checkbox-inline' style="vertical-align:bottom;"><label for="Sex_0">@Html.RadioButtonFor(model => model.Sex, "M")Male</label></div>
+                    <div class='radio checkbox-inline' style="vertical-align:bottom;"><label for="Sex_1">@Html.RadioButtonFor(model => model.Sex, "F")Female</label></div>
+                </div>
+                @Html.ValidationMessageFor(model => model.Sex)
+            </div>
+        </div>
+    </div>    
+    
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit").Class("btn btn-sm btn-default")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

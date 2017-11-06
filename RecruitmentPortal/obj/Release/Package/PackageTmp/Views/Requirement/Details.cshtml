@@ -1,0 +1,186 @@
+﻿@model RecruitmentPortal.Models.Requirement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Requirement</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JobNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priority)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HourlyBuyRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HourlyBuyRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HourlyBillingRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HourlyBillingRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OneTimeFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OneTimeFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InternalResumeCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InternalResumeCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientResumeCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientResumeCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReasonNotClosed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReasonNotClosed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecruiterId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecruiterId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountManagerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountManagerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedTimestamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedTimestamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedTimestamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedTimestamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client1.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RequirementId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

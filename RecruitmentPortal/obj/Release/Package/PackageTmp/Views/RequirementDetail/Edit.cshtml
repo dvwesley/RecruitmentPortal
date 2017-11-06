@@ -1,0 +1,43 @@
+﻿@model RecruitmentPortal.Models.RequirementDetail
+@{
+    ViewBag.Title = "Edit Consultant";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "RequirementDetail", new { requirementId = Model.RequirementId }, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.RequirementDetailId)
+    @Html.HiddenFor(model => model.RequirementId)
+    @Html.HiddenFor(model => model.ResourceId)
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">   
+            @f.FormGroup().DropDownListFor(model => model.RecruiterId, (SelectList)ViewBag.Recruiters).OptionLabel("--Select--")
+            <div class=" form-group">
+                @Html.LabelFor(model => model.ReferredToClient)
+                <br />
+                @Html.CheckBoxFor(model => model.ReferredToClient)
+                @Html.ValidationMessageFor(model => model.ReferredToClient)
+            </div>
+            <div class=" form-group">
+                @Html.LabelFor(model => model.CandidateSelected)
+                <br />
+                @Html.CheckBoxFor(model => model.CandidateSelected)
+                @Html.ValidationMessageFor(model => model.CandidateSelected)
+            </div>            
+            @f.FormGroup().TextAreaFor(model => model.Notes)
+        </div>
+    </div>
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

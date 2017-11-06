@@ -1,0 +1,54 @@
+﻿@model IEnumerable<RecruitmentPortal.Models.Requirement>
+@{
+    ViewBag.Title = "Requirement List";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Create New", "Create", "Requirement", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<div class="table-responsive">
+    @using (Html.Bootstrap().Begin(new Table().Id("BigListTable").Bordered().Condensed().Hover()))
+    {
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.JobNumber)</th>
+                <th>@Html.DisplayNameFor(model => model.JobTitle)</th>
+                <th>@Html.DisplayNameFor(model => model.Description)</th>
+                <th>@Html.DisplayNameFor(model => model.Priority)</th>
+                <th>@Html.DisplayNameFor(model => model.Status)</th>
+                <th>@Html.DisplayNameFor(model => model.Tier1ClientId)</th>                
+                <th>@Html.DisplayNameFor(model => model.SkillSetCSV)</th>
+                <th>No. of Resumes</th>
+                <th>No. Referred to Client</th>    
+                <th>No. Placed</th>    
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.JobNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.JobTitle)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PriorityDisplay)</td>
+                    <td>@Html.DisplayFor(modelItem => item.StatusDisplay)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Client.Name)</td>                    
+                    <td>@Html.DisplayFor(modelItem => item.SkillSetCSV)</td>
+                    <td>@item.RequirementDetails.Count()</td>                    
+                    <td>@item.RequirementDetails.Where(r => r.ReferredToClient).Count()</td>
+                    <td>@item.RequirementDetails.Where(r => r.CandidateSelected).Count()</td>
+                    <td>@Html.ActionLink("Submit Candidates", "Index", "RequirementDetail", new { requirementId = item.RequirementId }, null) | @Html.ActionLink("Edit", "Edit/" + item.RequirementId)</td>
+                </tr>
+            }
+        </tbody>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/list/js")
+}

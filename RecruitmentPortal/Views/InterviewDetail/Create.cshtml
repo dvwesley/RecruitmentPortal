@@ -1,0 +1,30 @@
+﻿@model RecruitmentPortal.Models.InterviewDetail
+@{
+    ViewBag.Title = "Add a SkillSet";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "InterviewDetail", new { interviewId = Model.InterviewId }, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.InterviewId)
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DropDownListFor(model => model.SkillSetId, (IEnumerable<SelectListItem>)ViewBag.SkillSets).OptionLabel("-- Select --")
+            @f.FormGroup().DropDownListFor(model => model.Rating, (IEnumerable<SelectListItem>)ViewBag.Ratings).OptionLabel("-- Select --")
+            @f.FormGroup().TextBoxFor(model => model.Comments)            
+            @Html.Bootstrap().SubmitButton().Id("btnSubmit").Class("btn btn-sm btn-default")
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

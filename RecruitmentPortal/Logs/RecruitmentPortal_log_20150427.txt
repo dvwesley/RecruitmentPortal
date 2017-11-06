@@ -1,0 +1,6 @@
+Validation failed for one or more entities. See 'EntityValidationErrors' property for more details. The validation errors are: Invalid amount for Hourly Rate.; Invalid amount for Salary.; Invalid amount for CTC.
+Validation failed for one or more entities. See 'EntityValidationErrors' property for more details. The validation errors are: Invalid amount for Hourly Rate.; Invalid amount for Salary.; Invalid amount for CTC.
+Validation failed for one or more entities. See 'EntityValidationErrors' property for more details. The validation errors are: Invalid amount for Hourly Rate.; Invalid amount for Salary.; Invalid amount for CTC.
+Validation failed for one or more entities. See 'EntityValidationErrors' property for more details. The validation errors are: Invalid amount for Hourly Rate.; Invalid amount for Salary.; Invalid amount for CTC.
+Validation failed for one or more entities. See 'EntityValidationErrors' property for more details. The validation errors are: Invalid amount for Hourly Rate.; Invalid amount for Salary.; Invalid amount for CTC.
+Validation failed for one or more entities. See 'EntityValidationErrors' property for more details. The validation errors are: First Name is required.; Last Name is required.; Sex is required.; DOB is required.

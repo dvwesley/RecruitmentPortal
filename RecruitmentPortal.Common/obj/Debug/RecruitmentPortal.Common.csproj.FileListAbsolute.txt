@@ -1,0 +1,9 @@
+D:\vanitha\Projects\RecruitmentPortal\RecruitmentPortal.Common\bin\Debug\RecruitmentPortal.Common.dll
+D:\vanitha\Projects\RecruitmentPortal\RecruitmentPortal.Common\bin\Debug\RecruitmentPortal.Common.pdb
+D:\vanitha\Projects\RecruitmentPortal\RecruitmentPortal.Common\obj\Debug\RecruitmentPortal.Common.dll
+D:\vanitha\Projects\RecruitmentPortal\RecruitmentPortal.Common\obj\Debug\RecruitmentPortal.Common.pdb
+E:\Switchlane\RecruitmentPortal\RecruitmentPortal.Common\bin\Debug\RecruitmentPortal.Common.dll
+E:\Switchlane\RecruitmentPortal\RecruitmentPortal.Common\bin\Debug\RecruitmentPortal.Common.pdb
+E:\Switchlane\RecruitmentPortal\RecruitmentPortal.Common\obj\Debug\RecruitmentPortal.Common.csprojResolveAssemblyReference.cache
+E:\Switchlane\RecruitmentPortal\RecruitmentPortal.Common\obj\Debug\RecruitmentPortal.Common.dll
+E:\Switchlane\RecruitmentPortal\RecruitmentPortal.Common\obj\Debug\RecruitmentPortal.Common.pdb

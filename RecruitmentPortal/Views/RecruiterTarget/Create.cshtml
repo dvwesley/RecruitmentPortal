@@ -1,0 +1,51 @@
+﻿@model RecruitmentPortal.Models.RecruiterTarget
+@{
+    ViewBag.Title = "Set Target";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "RecruiterTarget", new { recruiterId = Model.RecruiterId }, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.RecruiterId)
+    <div class="row">
+        <div class="col-md-4 col-sm-7 col-xs-12">
+            @f.FormGroup().DropDownListFor(model => model.Year, (IEnumerable<SelectListItem>) ViewBag.Years).OptionLabel("-- Select --")                    
+        </div>
+        <div class="col-md-4 col-sm-7 col-xs-12">
+            @f.FormGroup().DropDownListFor(model => model.TargetType, (IEnumerable<SelectListItem>) ViewBag.TargetTypes).OptionLabel("-- Select --")                    
+        </div>
+        <div class="col-md-4 col-sm-7 col-xs-12">
+            <div class=" form-group">
+                @Html.LabelFor(model => model.TargetDate)
+                <div class="input-group date">
+                    @Html.TextBoxFor(model => model.TargetDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+                @Html.ValidationMessageFor(model => model.TargetDate)
+            </div>
+        </div>
+    </div>           
+    <div class="row">
+        <div class="col-md-4 col-sm-7 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.TargetCount)
+        </div>
+        <div class="col-md-4 col-sm-7 col-xs-12">
+            @f.FormGroup().DropDownListFor(model => model.CommissionTypeId, (IEnumerable<SelectListItem>)ViewBag.CommissionTypes).OptionLabel("-- Select --")
+        </div>
+        <div class="col-md-4 col-sm-7 col-xs-12">
+        </div>
+    </div>
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit").Class("btn btn-sm btn-default")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<RecruitmentPortal.Models.Resource>
+@{
+    ViewBag.Title = "Consultant List";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Create New", "Create", "Resource", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<div class="table-responsive">
+    @using (Html.Bootstrap().Begin(new Table().Id("ListTable").Bordered().Condensed().Hover()))
+    {
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ResourceName)</th>
+                <th>@Html.DisplayNameFor(model => model.DomainExpertise)</th>
+                <th>@Html.DisplayNameFor(model => model.YearsOfExperience)</th>
+                <th>@Html.DisplayNameFor(model => model.USExperience)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.ResourceName)</td>
+                <td>@Html.DisplayFor(modelItem => item.DomainExpertise)</td>
+                <td>@Html.DisplayFor(modelItem => item.YearsOfExperience)</td>
+                <td>@Html.DisplayFor(modelItem => item.USExperience)</td>
+                <td>@Html.ActionLink("Documents", "Index", "ResourceDocument", new { resourceId = item.ResourceId },  null) | @Html.ActionLink("SkillSet", "Index", "ResourceSkillSet", new { resourceId = item.ResourceId }, null)  | @Html.ActionLink("View Profile", "Details/" + item.ResourceId) | @Html.ActionLink("Edit", "Edit/" + item.ResourceId)</td>
+            </tr>
+            }
+        </tbody>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/list/js")
+}

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<RecruitmentPortal.Models.RequirementDetail>
+@{
+    ViewBag.Title = "Resource list";
+}
+<br />
+<div class="row">
+    <div class="col-md-7 col-xs-7">
+        <h4>@ViewBag.DocumentTitle</h4>
+    </div>
+    <div class="col-md-5 col-xs-5 text-right">
+        @Html.ActionLink("Requirement List", "Index", "Requirement", null, new { @class = "btn btn-sm btn-default" })        
+        @Html.ActionLink("Submit New Consultants", "Create", "RequirementDetail", new { requirementId = ViewBag.RequirementId }, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<div class="table-responsive">
+    @using (Html.Bootstrap().Begin(new Table().Bordered().Condensed().Hover()))
+    {
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ResourceId)</th>
+                <th>@Html.DisplayNameFor(model => model.RecruiterId)</th>
+                <th>@Html.DisplayNameFor(model => model.ReferredToClient)</th>
+                <th>@Html.DisplayNameFor(model => model.CandidateSelected)</th>
+                <th>@Html.DisplayNameFor(model => model.Notes)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(item.Resource.ResourceName, "Details/" + item.ResourceId, "Resource")</td>
+                    <td>@Html.DisplayFor(modelItem => item.Recruiter.AspNetUser.FirstName) @Html.DisplayFor(modelItem => item.Recruiter.AspNetUser.LastName)</td>
+                    <td>@Html.YesNo(item.ReferredToClient)</td>
+                    <td>@Html.YesNo(item.CandidateSelected)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Notes)</td>
+                    <td>@Html.ActionLink("Schedule Interview", "Create", "Interview",  new { requirementId = item.RequirementId, resourceId = item.ResourceId }, null) | @Html.ActionLink("Edit", "Edit/" + item.RequirementDetailId) | @Html.ActionLink("Delete", "Delete/" + item.RequirementDetailId)
+                        @if(item.CandidateSelected)
+                        {
+                           <text>|</text> @Html.ActionLink("On Board", "OnBoard/" + item.RequirementDetailId)
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/list/js")    
+}

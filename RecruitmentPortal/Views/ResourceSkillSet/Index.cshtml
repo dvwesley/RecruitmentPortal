@@ -1,0 +1,42 @@
+﻿@model IEnumerable<RecruitmentPortal.Models.ResourceSkillSet>
+@{
+    ViewBag.Title = "Skill Set list for " + ViewBag.ResourceName;
+}
+<br />
+<div class="row">
+    <div class="col-md-7 col-xs-7">
+        <h4>@ViewBag.Title</h4>
+    </div>
+    <div class="col-md-5 col-xs-5 text-right">
+        @Html.ActionLink("Consultant List", "Index", "Resource", null, new { @class = "btn btn-sm btn-default" })
+        @Html.ActionLink("Create New", "Create", "ResourceSkillSet", new { resourceId = ViewBag.ResourceId }, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<div class="table-responsive">
+    @using (Html.Bootstrap().Begin(new Table().Id("consultantListTable").Bordered().Condensed().Hover()))
+    {
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.SkillSetId)</th>
+                <th>@Html.DisplayNameFor(model => model.SelfRating)</th>
+                <th>@Html.DisplayNameFor(model => model.SelfComments)</th>
+                <th>@Html.DisplayNameFor(model => model.RecruiterRating)</th>
+                <th>@Html.DisplayNameFor(model => model.RecruiterComments)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.SkillSet.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SelfRating)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SelfComments)</td>
+                    <td>@Html.DisplayFor(modelItem => item.RecruiterRating)</td>
+                    <td>@Html.DisplayFor(modelItem => item.RecruiterComments)</td>
+                    <td>@Html.ActionLink("Edit", "Edit/" + item.ResourceSkillSetId, "ResourceSkillSet") | @Html.ActionLink("Delete", "Delete/" + item.ResourceSkillSetId, "ResourceSkillSet")</td>
+                </tr>
+            }
+        </tbody>
+    }
+</div>

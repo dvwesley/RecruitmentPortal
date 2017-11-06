@@ -1,0 +1,29 @@
+﻿@model RecruitmentPortal.Models.Interview
+@{
+    ViewBag.Title = "Delete Interview";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>Delete this Interview?</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "Interview", null , new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DisplayFor(model => model.Requirement.Description).Label().LabelText("Requirement")
+            @f.FormGroup().DisplayFor(model => model.Client.Name).Label().LabelText("Client")
+            @f.FormGroup().DisplayFor(model => model.StartTime)
+            @f.FormGroup().DisplayFor(model => model.EndTime)
+            @f.FormGroup().DisplayFor(model => model.InterviewTypeDisplay).Label().LabelText("Interview Type")
+            @f.FormGroup().DisplayFor(model => model.InterviewStatusDisplay).Label().LabelText("Status")
+            @Html.Bootstrap().SubmitButton().Text("Delete").Class("btn btn-sm btn-default")
+        </div>
+    </div>
+}

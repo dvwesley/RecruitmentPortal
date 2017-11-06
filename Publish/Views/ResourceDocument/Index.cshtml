@@ -1,0 +1,39 @@
+﻿@model IEnumerable<RecruitmentPortal.Models.ResourceDocument>
+@{
+    ViewBag.Title = "Document list for " + ViewBag.ResourceName;
+}
+<br />
+<div class="row">
+    <div class="col-md-7 col-xs-7">
+        <h4>@ViewBag.Title</h4>
+    </div>
+    <div class="col-md-5 col-xs-5 text-right">
+        @Html.ActionLink("Consultant List", "Index", "Resource", null, new { @class = "btn btn-sm btn-default" })
+        @Html.ActionLink("Upload Document", "Upload", "ResourceDocument", new { resourceId = ViewBag.ResourceId }, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<div class="table-responsive">
+    @using (Html.Bootstrap().Begin(new Table().Id("consultantListTable").Bordered().Condensed().Hover()))
+    {
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.DocumentTypeId)</th>
+                <th>@Html.DisplayNameFor(model => model.Description)</th>
+                <th>@Html.DisplayNameFor(model => model.FileName)</th>                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.DocumentType.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FileName)</td>                    
+                    <td>@Html.ActionLink("Delete", "Delete/" + item.ResourceDocumentId, "ResourceDocument")</td>
+                </tr>
+            }
+        </tbody>
+    }
+</div>
+    

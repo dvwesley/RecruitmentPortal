@@ -1,0 +1,104 @@
+﻿@model RecruitmentPortal.Models.Interview
+@{
+    ViewBag.Title = "Interview Details";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "Interview", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{    
+    <div class="row">        
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DisplayFor(model => model.Requirement.Description).Label().LabelText("Requirement").ShowRequiredStar(false)   
+        </div>         
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DisplayFor(model => model.Client.Name).Label().LabelText("Client").ShowRequiredStar(false)   
+        </div>
+    </div>
+    <div class="row">        
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DisplayFor(model => model.StartTime)
+        </div>         
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DisplayFor(model => model.EndTime)
+        </div>
+    </div>
+    <div class="row">        
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DisplayFor(model => model.InterviewTypeDisplay).Label().LabelText("Interview Type")
+        </div>         
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DisplayFor(model => model.InterviewStatusDisplay).Label().LabelText("Interview Status")
+        </div>
+    </div>      
+    <div class="row">        
+        <div class="col-md-2 col-sm-3 col-xs-6">
+            @f.FormGroup().DisplayFor(model => model.Interviewer.AspNetUser.FirstName).Label().LabelText("Interviewer") 
+        </div>         
+        <div class="col-md-2 col-sm-3 col-xs-6">            
+            @f.FormGroup().DisplayFor(model => model.Interviewer.AspNetUser.LastName).Label().LabelText("")
+        </div>
+    </div>                          
+    <div class="row">        
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            @f.FormGroup().DisplayFor(model => model.Feedback)
+        </div>
+    </div>        
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <h4>Ratings</h4>
+            @using (Html.Bootstrap().Begin(new Table().Bordered().Condensed().Hover()))
+            {
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.InterviewDetails.FirstOrDefault().SkillSetId)</th>
+                        <th>@Html.DisplayNameFor(model => model.InterviewDetails.FirstOrDefault().Rating)</th>
+                        <th>@Html.DisplayNameFor(model => model.InterviewDetails.FirstOrDefault().Comments)</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.InterviewDetails)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.SkillSet.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Rating)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Comments)</td>                            
+                        </tr>
+                    }
+                </tbody>
+            }
+        </div>  
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <h4>Documents</h4>
+            @using (Html.Bootstrap().Begin(new Table().Bordered().Condensed().Hover()))
+            {
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.InterviewDocuments.FirstOrDefault().DocumentTypeId)</th>
+                        <th>@Html.DisplayNameFor(model => model.InterviewDocuments.FirstOrDefault().Description)</th>
+                        <th>@Html.DisplayNameFor(model => model.InterviewDocuments.FirstOrDefault().FileName)</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.InterviewDocuments)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.DocumentType.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                            <td><a href="@item.FilePath" target="_blank">@item.FileName</a></td>                            
+                        </tr>
+                    }
+                </tbody>
+            }
+        </div>
+    </div>
+}

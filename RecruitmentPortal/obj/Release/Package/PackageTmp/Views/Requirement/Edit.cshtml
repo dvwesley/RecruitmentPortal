@@ -1,0 +1,156 @@
+﻿@model RecruitmentPortal.Models.Requirement
+@{
+    ViewBag.Title = "Edit a Requirement";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "Requirement", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.RequirementId)    
+    @Html.HiddenFor(model => model.NoofPositions)
+    @Html.HiddenFor(model => model.CreatedBy)
+    @Html.Hidden("SelectedSkillSetCSV")
+    @Html.HiddenFor(model => model.MandatorySkillSetCSV)    
+    using (var tabs = Html.Bootstrap().Begin(new Tabs("Requirement")))
+    {        
+        @tabs.Tab("Details")
+        @tabs.Tab("Skill Set")        
+        using (tabs.BeginPanel())
+        {
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.JobNumber)
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.JobTitle)                    
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().DropDownListFor(model => model.Priority, (IEnumerable<SelectListItem>)ViewBag.Priorities).OptionLabel("-- Select --")                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().DropDownListFor(model => model.Status, (IEnumerable<SelectListItem>)ViewBag.RequirementStatus).SelectedValue("1").OptionLabel("-- Select --")                    
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().DropDownListFor(model => model.Tier1ClientId, (IEnumerable<SelectListItem>)ViewBag.Tier1Clients).OptionLabel("-- Select --").Append(Html.Bootstrap().Button().Text("Add").Id("btnAddClient").Class("btn btn-default"))                    
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().DropDownListFor(model => model.Tier2ClientId, (IEnumerable<SelectListItem>)ViewBag.Tier2Clients).OptionLabel("-- Select --").Append(Html.Bootstrap().Button().Text("Add").Id("btnAddClient").Class("btn btn-default"))                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().DropDownListFor(model => model.JobTypeId, (IEnumerable<SelectListItem>)ViewBag.JobType).OptionLabel("-- Select --")                    
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Location)                    
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">            
+                    @f.FormGroup().TextBoxFor(model => model.Duration)                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.HourlyBuyRate).Prepend("$").Format("{0:0.00}")
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.HourlyBillingRate).Prepend("$").Format("{0:0.00}")
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.OneTimeFee).Prepend("$").Format("{0:0.00}")
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().DropDownListFor(model => model.RecruiterId, (IEnumerable<SelectListItem>)ViewBag.Recruiters).OptionLabel("-- Select --")
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().DropDownListFor(model => model.AccountManagerId, (IEnumerable<SelectListItem>)ViewBag.AccountManagers).OptionLabel("-- Select --")
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.ReasonNotClosed)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    @f.FormGroup().TextAreaFor(model => model.Description)
+                </div>
+            </div>
+        }
+        using (tabs.BeginPanel())
+        {     
+            <br />           
+            if(Model.RequirementSkillSets.Count() > 0)
+            {                     
+                <div class="row">
+                    <div class="col-md-6 col-xs-12 col-sm-6">
+                        @using (Html.Bootstrap().Begin(new Table().Bordered().Condensed().Hover()))
+                        {
+                            <tr>                         
+                                <th>Skill Set</th>
+                                <th>Mandatory</th>
+                                <td></td>
+                            </tr>
+                            foreach (var item in Model.RequirementSkillSets)
+                            {
+                                <tr>
+                                    <td>@item.SkillSet.Name</td>                                
+                                    <td>@Html.CheckBoxFor(ModelItem => item.IsMandatory, new { @onClick = "javascript:GetMandatorySkillSet(this)", @value = item.SkillSetId + "," + item.SkillSet.Name })</td>
+                                    <td>@Html.ActionLink("Delete", "DeleteSkillSet/" + item.RequirementSkillSetId)</td>
+                                </tr>
+                            }
+                        }
+                    </div>
+                </div>
+            }                
+            <div class="row">
+                <div class="col-md-3 col-xs-12 col-sm-6">
+                    @(f.FormGroup().TextBox("txtSkillSetName").Placeholder("Skill Set").Append(Html.Bootstrap().Button().Text("Search").Id("btnSearchSkillSet")).Label().LabelText(""))
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-xs-12 col-sm-12">
+                    @using (Html.Bootstrap().Begin(new Table().Bordered().Condensed().Hover().Id("SkillSetListTable")))
+                    {
+                        <thead>
+                            <tr>
+                                <th>Add</th>
+                                <th>Skill Set</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    }
+                </div>
+                <div class="col-md-6 col-xs-12 col-sm-12">
+                    @using (Html.Bootstrap().Begin(new Table().Bordered().Condensed().Hover().Id("SelectedSkillSetListTable")))
+                    {
+                        <thead>
+                            <tr>
+                                <th>Remove</th>
+                                <th>Skill Set</th>
+                                <th>Mandatory</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    }
+                </div>
+            </div>    
+        }
+    }      
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit").Class("btn btn-sm btn-default")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/requirementcreate/js")    
+}

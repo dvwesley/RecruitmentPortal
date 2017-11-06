@@ -1,0 +1,27 @@
+﻿@model RecruitmentPortal.Models.ResourceDocument
+@{
+    ViewBag.Title = "Delete Document";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>Delete this Document?</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "ResourceDocument", new { resourceId = Model.ResourceId }, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DisplayFor(model => model.DocumentType.Name).Label().LabelText("Document Type")
+            @f.FormGroup().DisplayFor(model => model.Description)
+            @f.FormGroup().DisplayFor(model => model.FileName)          
+            @Html.Bootstrap().SubmitButton().Text("Delete").Class("btn btn-sm btn-default")
+        </div>
+    </div>
+}
+

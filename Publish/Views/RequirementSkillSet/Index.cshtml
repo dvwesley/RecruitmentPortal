@@ -1,0 +1,36 @@
+﻿@model IEnumerable<RecruitmentPortal.Models.RequirementSkillSet>
+@{
+    ViewBag.Title = "Skill Set list for " + ViewBag.ResourceName;
+}
+<br />
+<div class="row">
+    <div class="col-md-7 col-xs-7">
+        <h4>@ViewBag.Title</h4>
+    </div>
+    <div class="col-md-5 col-xs-5 text-right">
+        @Html.ActionLink("Consultant List", "Index", "Requirement", null, new { @class = "btn btn-sm btn-default" })
+        @Html.ActionLink("Create New", "Create", "RequirementSkillSet", new { requirementId = ViewBag.RequirementId }, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<div class="table-responsive">
+    @using (Html.Bootstrap().Begin(new Table().Bordered().Condensed().Hover()))
+    {
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.SkillSetId)</th>
+                <th>@Html.DisplayNameFor(model => model.IsMandatory)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.SkillSet.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IsMandatory)</td>                    
+                    <td>@Html.ActionLink("Edit", "Edit/" + item.ResourceSkillSetId, "ResourceSkillSet") | @Html.ActionLink("Delete", "Delete/" + item.ResourceSkillSetId, "ResourceSkillSet")</td>
+                </tr>
+            }
+        </tbody>
+    }
+</div>

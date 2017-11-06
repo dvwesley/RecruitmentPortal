@@ -1,0 +1,46 @@
+﻿@model IEnumerable<RecruitmentPortal.Models.Client>
+@{
+    ViewBag.Title = "Client List";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Create New", "Create", "Client", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<div class="table-responsive">
+    @using (Html.Bootstrap().Begin(new Table().Id("ListTable").Bordered().Condensed().Hover()))
+    {
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.PhoneNo)</th>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <th>@Html.DisplayNameFor(model => model.Account)</th>
+                <th>@Html.DisplayNameFor(model => model.BlackListed)</th>
+                <th>@Html.DisplayNameFor(model => model.BillingContact)</th>                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Account)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BlackListedDisplay)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BillingContact)</td>                    
+                    <td>@Html.ActionLink("Edit", "Edit/" + @item.ClientId, "Client") | @Html.ActionLink("Delete", "Delete/" + @item.ClientId, "Client") | @Html.ActionLink("Documents", "Index", "ClientDocument", new { clientId = item.ClientId }, null)</td>
+                </tr>
+            }
+        </tbody>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/list/js")
+}

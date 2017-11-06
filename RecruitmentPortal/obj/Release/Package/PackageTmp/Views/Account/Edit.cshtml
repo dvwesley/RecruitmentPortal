@@ -1,0 +1,55 @@
+﻿@model RecruitmentPortal.Models.ProfileViewModel
+@{
+    ViewBag.Title = "Update Profile";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">      
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    <p class="text-success">@ViewBag.StatusMessage</p>
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.FirstName)
+        </div>  
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.MiddleInitial)
+        </div>  
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.LastName)
+        </div>  
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.Address1)
+        </div>  
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.Address2)
+        </div>  
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.City)
+        </div>  
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            @f.FormGroup().DropDownListFor(model => model.State, (IEnumerable<SelectListItem>)ViewBag.States).OptionLabel("-- Select --")
+        </div>  
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.Zipcode)
+        </div>  
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            @f.FormGroup().TextBoxFor(model => model.PhoneNo)
+        </div>  
+    </div>
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit").Class("btn btn-sm btn-default")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,42 @@
+﻿@model RecruitmentPortal.Models.RequirementSkillSet
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RequirementSkillSet</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IsMandatory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsMandatory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Requirement.JobNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Requirement.JobNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SkillSet.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SkillSet.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RequirementSkillSetId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

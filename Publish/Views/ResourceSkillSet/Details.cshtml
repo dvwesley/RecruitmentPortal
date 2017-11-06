@@ -1,0 +1,66 @@
+﻿@model RecruitmentPortal.Models.ResourceSkillSet
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ResourceSkillSet</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SelfRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SelfRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SelfComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SelfComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecruiterRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecruiterRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecruiterComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecruiterComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resource.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resource.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SkillSet.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SkillSet.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ResourceSkillSetId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6e5fc05d64ba4da0befdfa50feb313a1" Name="Diagram1" ZoomLevel="62">
+        <EntityTypeShape EntityType="RPModel.Client" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.ClientDocument" Width="1.5" PointX="3" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.CommissionType" Width="1.5" PointX="3" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.DocumentType" Width="1.5" PointX="11" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Interview" Width="1.5" PointX="5.25" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.InterviewDetail" Width="1.5" PointX="7.5" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.InterviewDocument" Width="1.5" PointX="10.5" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Interviewer" Width="1.5" PointX="10.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Invoice" Width="1.5" PointX="10.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Recruiter" Width="1.5" PointX="3" PointY="34.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.RecruiterTarget" Width="1.5" PointX="5.25" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Referrer" Width="1.5" PointX="5.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Requirement" Width="1.5" PointX="3" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.RequirementDetail" Width="1.5" PointX="8.25" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.RequirementSkillSet" Width="1.5" PointX="8.25" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Resource" Width="1.5" PointX="8" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.ResourceDocument" Width="1.5" PointX="13.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.ResourceSkillSet" Width="1.5" PointX="13.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.ResourceType" Width="1.5" PointX="5.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.SkillSet" Width="1.5" PointX="11" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Timesheet" Width="1.5" PointX="10.25" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Vendor" Width="1.5" PointX="5.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.VendorDocument" Width="1.5" PointX="16.25" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="RPModel.FK_ClientDocument_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Interview_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Requirement_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Requirement_Client1" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Resource_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_ClientDocument_DocumentType" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_RecruiterTarget_CommissionType" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_InterviewDocument_DocumentType" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_ResourceDocument_DocumentType" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_VendorDocument_DocumentType" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Interview_Interviewer" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Interview_Requirement" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Interview_Resource" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_InterviewDetail_Interview" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_InterviewDocument_Interview" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Interviewer_Resource" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Invoice_Resource" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_RecruiterTarget_Recruiter" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Resource_Referrer" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_RequirementDetail_Requirement" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_RequirementSkillSet_Requirement" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_RequirementDetail_Resource" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_RequirementSkillSet_SkillSet" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Resource_ResourceType" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Resource_Vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Resource_Vendor1" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_ResourceDocument_Resource" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_ResourceSkillSet_Resource" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Timesheet_Resource" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_ResourceSkillSet_SkillSet" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_VendorDocument_Vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_InterviewDetail_SkillSet" />
+        <EntityTypeShape EntityType="RPModel.AspNetUser" Width="1.5" PointX="0.75" PointY="1" />
+        <AssociationConnector Association="RPModel.FK_Interviewer_AspNetUsers" />
+        <AssociationConnector Association="RPModel.FK_Recruiter_AspNetUsers" />
+        <AssociationConnector Association="RPModel.FK_RequirementDetail_Recruiter" />
+        <EntityTypeShape EntityType="RPModel.InterviewerSkillSet" Width="1.5" PointX="3.375" PointY="0.75" />
+        <AssociationConnector Association="RPModel.FK_InterviewerSkillSet_Interviewer" />
+        <AssociationConnector Association="RPModel.FK_InterviewerSkillSet_SkillSet" />
+        <AssociationConnector Association="RPModel.FK_Resource_AspNetUsers" />
+        <EntityTypeShape EntityType="RPModel.ProjectDetail" Width="1.5" PointX="13.25" PointY="23.75" />
+        <AssociationConnector Association="RPModel.FK_ProjectDetail_Recruiter" />
+        <AssociationConnector Association="RPModel.FK_ProjectDetail_Requirement" />
+        <AssociationConnector Association="RPModel.FK_ProjectDetail_Resource" />
+        <AssociationConnector Association="RPModel.FK_Timesheet_ProjectDetail" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

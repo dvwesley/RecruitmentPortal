@@ -1,0 +1,225 @@
+﻿@model RecruitmentPortal.Models.InterviewerViewModel
+@{
+    ViewBag.Title = "Edit an Interviewer";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>@ViewBag.Title.</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "Interviewer", null, new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.InterviewerId)    
+    @Html.HiddenFor(model => model.SelectedSkillSetCSV)
+    using (var tabs = Html.Bootstrap().Begin(new Tabs("Interviewer")))
+    {
+        @tabs.Tab("Personal Info")
+        @tabs.Tab("Financial Info")
+        @tabs.Tab("Experience Summary")
+        @tabs.Tab("Skill Set")
+
+        using (tabs.BeginPanel())
+        {
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Email).Disabled(true)
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.FirstName)
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.MiddleInitial)
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.LastName)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Address1)
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Address2)
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.City)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().DropDownListFor(model => model.State, (IEnumerable<SelectListItem>) ViewBag.States).OptionLabel("-- Select --")
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.Zipcode)
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.PhoneNo)
+                </div>
+            </div>
+        }
+        using (tabs.BeginPanel())
+        {
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.HourlyRate).Prepend("$").Format("{0:0.00}")
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    @f.FormGroup().TextBoxFor(model => model.FixedFee).Prepend("$").Format("{0:0.00}")
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.AvailableonSundays)
+                        <br />
+                        @Html.CheckBoxFor(model => model.AvailableonSundays)
+                        @Html.ValidationMessageFor(model => model.AvailableonSundays)
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.AvailableonMondays)
+                        <br />
+                        @Html.CheckBoxFor(model => model.AvailableonMondays)
+                        @Html.ValidationMessageFor(model => model.AvailableonMondays)
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.AvailableonTuesdays)
+                        <br />
+                        @Html.CheckBoxFor(model => model.AvailableonTuesdays)
+                        @Html.ValidationMessageFor(model => model.AvailableonTuesdays)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.AvailableonWednesdays)
+                        <br />
+                        @Html.CheckBoxFor(model => model.AvailableonWednesdays)
+                        @Html.ValidationMessageFor(model => model.AvailableonWednesdays)
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.AvailableonThursdays)
+                        <br />
+                        @Html.CheckBoxFor(model => model.AvailableonThursdays)
+                        @Html.ValidationMessageFor(model => model.AvailableonThursdays)
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.AvailableonFridays)
+                        <br />
+                        @Html.CheckBoxFor(model => model.AvailableonFridays)
+                        @Html.ValidationMessageFor(model => model.AvailableonFridays)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                    <div class=" form-group">
+                        @Html.LabelFor(model => model.AvailabaleonSaturdays)
+                        <br />
+                        @Html.CheckBoxFor(model => model.AvailabaleonSaturdays)
+                        @Html.ValidationMessageFor(model => model.AvailabaleonSaturdays)
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                </div>
+                <div class="col-md-4 col-sm-7 col-xs-12">
+                </div>
+            </div>
+        }
+        using (tabs.BeginPanel())
+        {
+            <br />
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    @f.FormGroup().TextAreaFor(model => model.Summary).Rows(10)
+                </div>
+            </div>
+        }
+        using (tabs.BeginPanel())
+        {
+            <br />           
+            if(Model.InterviewerSkillSets != null && Model.InterviewerSkillSets.Count() > 0)
+            {                     
+                <div class="row">
+                    <div class="col-md-6 col-xs-12 col-sm-6">
+                        @using (Html.Bootstrap().Begin(new Table().Bordered().Condensed().Hover()))
+                        {
+                            <tr>                         
+                                <th>Skill Set</th>                                
+                                <td></td>
+                            </tr>
+                            foreach (var item in Model.InterviewerSkillSets)
+                            {
+                                <tr>
+                                    <td>@item.SkillSet.Name</td>                                                                    
+                                    <td>@Html.ActionLink("Delete", "DeleteSkillSet/" + item.InterviewerSkillSetId)</td>
+                                </tr>
+                            }
+                        }
+                    </div>
+                </div>
+            }                            
+            <div class="row">
+                <div class="col-md-3 col-xs-12 col-sm-6">
+                    @(f.FormGroup().TextBox("txtSkillSetName").Placeholder("Skill Set").Append(Html.Bootstrap().Button().Text("Search").Id("btnSearchSkillSet")).Label().LabelText(""))
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-xs-12 col-sm-12">
+                    @using (Html.Bootstrap().Begin(new Table().Bordered().Condensed().Hover().Id("SkillSetListTable")))
+                    {
+                        <thead>
+                            <tr>
+                                <th>Add</th>
+                                <th>Skill Set</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    }
+                </div>
+                <div class="col-md-6 col-xs-12 col-sm-12">
+                    @using (Html.Bootstrap().Begin(new Table().Bordered().Condensed().Hover().Id("SelectedSkillSetListTable")))
+                    {
+                        <thead>
+                            <tr>
+                                <th>Remove</th>
+                                <th>Skill Set</th>                                
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    }
+                </div>
+            </div>           
+        }        
+    }
+    @Html.Bootstrap().SubmitButton().Id("btnSubmit").Class("btn btn-sm btn-default")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/interviewercreate/js")    
+}

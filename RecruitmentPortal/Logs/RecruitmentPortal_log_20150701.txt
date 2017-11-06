@@ -1,0 +1,44 @@
+
+======================= EXCEPTION ======================
+07/01/2015 11:53:25.221
+Information:Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+Source:EntityFramework
+Stack Trace:    at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at RecruitmentPortal.Controllers.ClientController.Edit(Client client) in d:\vanitha\Projects\RecruitmentPortal\RecruitmentPortal\Controllers\ClientController.cs:line 115
+========================================================
+
+
+======================= EXCEPTION ======================
+07/01/2015 14:01:10.324
+Information:Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+Source:EntityFramework
+Stack Trace:    at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at RecruitmentPortal.Controllers.InterviewController.Edit(Interview interview) in d:\vanitha\Projects\RecruitmentPortal\RecruitmentPortal\Controllers\InterviewController.cs:line 246
+========================================================
+
+
+======================= EXCEPTION ======================
+07/01/2015 14:06:52.787
+Information:Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+Source:EntityFramework
+Stack Trace:    at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at RecruitmentPortal.Controllers.InterviewDetailController.Edit(InterviewDetail interviewdetail) in d:\vanitha\Projects\RecruitmentPortal\RecruitmentPortal\Controllers\InterviewDetailController.cs:line 190
+========================================================
+
+
+======================= EXCEPTION ======================
+07/01/2015 14:22:30.415
+Information:Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+Source:EntityFramework
+Stack Trace:    at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at RecruitmentPortal.Controllers.VendorController.Edit(Vendor vendor) in d:\vanitha\Projects\RecruitmentPortal\RecruitmentPortal\Controllers\VendorController.cs:line 107
+========================================================
+

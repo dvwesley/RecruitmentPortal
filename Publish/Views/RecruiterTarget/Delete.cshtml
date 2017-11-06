@@ -1,0 +1,27 @@
+﻿@model RecruitmentPortal.Models.RecruiterTarget
+@{
+    ViewBag.Title = "Delete Target";
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-xs-7">
+        <h4>Delete this Target?</h4>
+    </div>
+    <div class="col-md-2 col-xs-5 text-right">
+        @Html.ActionLink("Back to List", "Index", "RecruiterTarget", new { recruiterId = Model.RecruiterId } , new { @class = "btn btn-sm btn-default" })
+    </div>
+</div>
+<hr />
+@using (var f = Html.Bootstrap().Begin(new Form()))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            @f.FormGroup().DisplayFor(model => model.Year)
+            @f.FormGroup().DisplayFor(model => model.TargetTypeDisplay)
+            @f.FormGroup().DisplayFor(model => model.TargetDate)
+            @f.FormGroup().DisplayFor(model => model.TargetCount)            
+            @Html.Bootstrap().SubmitButton().Text("Delete").Class("btn btn-sm btn-default")
+        </div>
+    </div>
+}
